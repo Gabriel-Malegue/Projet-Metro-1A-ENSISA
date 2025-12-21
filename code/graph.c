@@ -72,6 +72,10 @@ struct Graph* PrepareGraph(char* filename){
 
     //on lit et on verifie que les station soient valide
     while (fgets(line, sizeof(line), f)){
+        removeNewline(line); 
+        if (line[0] == '#' || line[0] == '\0')
+            continue;
+    
         if (strncmp(line, "STATION", 7) != 0)
             continue;
 
@@ -108,7 +112,10 @@ struct Graph* PrepareGraph(char* filename){
 
     //on lit et on verifie que les edges soient valide
     while (fgets(line, sizeof(line), f)){
-
+        removeNewline(line);
+        if (line[0] == '#' || line[0] == '\0')
+            continue;
+        
         if (strncmp(line, "EDGE", 4) != 0)
             continue;
 
@@ -138,5 +145,11 @@ struct Graph* PrepareGraph(char* filename){
     }
 
     fclose(f);
+    for (int i = 0; i <= maxId; i++) {
+        if (isStation[i] && graph->array[i] == NULL) {
+            printf("Problème : la station %i (%s) n'a aucune arête\n", i, stationNames[i]);
+        }
+    }
+
     return graph;
 }
