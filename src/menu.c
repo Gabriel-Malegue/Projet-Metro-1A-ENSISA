@@ -13,12 +13,12 @@ void affichermenu() {
         printf("1 - Afficher les informations d'une station\n");
         printf("2 - Lister les voisins d'une station\n");
         printf("3 - Calculer un chemin minimal\n");
-        printf("4 - Afficher les stations triées par degré\n");
+        printf("4 - Afficher les stations trieess par degre\n");
         printf("0 - Quitter\n");
         printf("Votre choix : ");
 
         if (scanf("%d", &nombre) != 1) {
-            printf("Entrée invalide !\n");
+            printf("Entree invalide !\n");
         }
 
         switch(nombre) {
