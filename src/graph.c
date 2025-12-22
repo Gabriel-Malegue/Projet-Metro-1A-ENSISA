@@ -61,10 +61,11 @@ struct Graph* prepare_graph(char* filename){
         return NULL;
     }
 
-    char line[MAX_LINE];
-    int stations = 0; // Nombre de stations a la fin
+    // Nombre de stations a la fin
+    int stations = 0;
 
     //on lit et on verifie que les station soient valide
+    char line[MAX_LINE];
     while (fgets(line, sizeof(line), f)){
         remove_newline(line); 
         if (line[0] == '#' || line[0] == '\0')
@@ -90,7 +91,7 @@ struct Graph* prepare_graph(char* filename){
         }
 
         //
-        // Rajout check si la ligne existe deja
+        // Rajout check si la stations existe deja
         //
 
         
