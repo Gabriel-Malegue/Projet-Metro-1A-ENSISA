@@ -1,20 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Iheaders
 TARGET = bin/metro.exe
 
 SRCS = main.c src/graph.c src/menu.c
-OBJS = $(SRCS:.c=.o)
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+all: | bin
+	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
 
 bin:
 	mkdir -p bin
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET)
