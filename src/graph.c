@@ -2,14 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 #include "graph.h"
+#include "dico.h"
 
-#define MAX_LINE 300
-#define MAX_ID   300
-
-char* station_names[MAX_ID];
-int is_station[MAX_ID];
+#define MAX_LINE 256 // Taille maximale pour une entree
 
 
 struct AdjListNode* new_node(int dest, int weight) {
@@ -21,17 +17,19 @@ struct AdjListNode* new_node(int dest, int weight) {
 }
 
 struct Graph* create_graph(int V) {
-    struct Graph* graph = malloc(sizeof(*graph));
+    struct Graph* graph = malloc(sizeof(struct Graph));
     graph->V = V;
-    graph->array = calloc(V, sizeof(struct AdjListNode*));
+    graph->array = malloc(V * sizeof(struct AdjListNode*));
     return graph;
 }
 
 void add_edge(struct Graph* graph, int src, int dest, int weight) {
+    // Rajoute l'arrete pour le premier sommet
     struct AdjListNode* node = new_node(dest, weight);
     node->next = graph->array[src];
     graph->array[src] = node;
 
+    // Rajoute l'arrete pour le deuxieme sommet
     node = new_node(src, weight);
     node->next = graph->array[dest];
     graph->array[dest] = node;
@@ -63,14 +61,8 @@ struct Graph* prepare_graph(char* filename){
         return NULL;
     }
 
-    for (int i = 0; i < MAX_ID; i++){
-        station_names[i] = NULL;
-        is_station[i] = 0;
-    }
-
-
     char line[MAX_LINE];
-    int maxId = -1;
+    int max_id = 0; // Nombre de stations a la fin
 
     //on lit et on verifie que les station soient valide
     while (fgets(line, sizeof(line), f)){
@@ -83,7 +75,7 @@ struct Graph* prepare_graph(char* filename){
 
         char* tok = strtok(line, ";");
         tok = strtok(NULL, ";");
-        remove_newline(tok); // pour enlever le retour à la ligne car c'est moche
+
         if (!tok || !is_number(tok)){
             printf( "Problème Station : ID de %s invalide\n",tok);
             continue;
@@ -93,23 +85,23 @@ struct Graph* prepare_graph(char* filename){
 
         tok = strtok(NULL, "\n");
         if (!tok || strlen(tok)==0) {
-            printf("Problème Station pas de nom pour l'id %i\n", id);
+            fprintf(stderr, "Problème: Station pas de nom pour l'id %i\n", id);
             continue;
         }
 
-        if (is_station[id]){
-            printf("Problème Station : station %i définie plusieurs fois donc %s pas pris en compte\n", id, tok);
-            continue;
-        }
+        //
+        // Rajout check si la ligne existe deja
+        //
 
-        is_station[id] = 1;
-        station_names[id] = malloc(strlen(tok) + 1);
-        strcpy(station_names[id], tok);
-        if (id > maxId) 
-            maxId = id;
+        
+        //
+        // Ajouter la paire station ID
+        //
+
+        if (id > max_id) max_id++;
     }
 
-    struct Graph *graph = create_graph(maxId + 1);
+    struct Graph *graph = create_graph(max_id + 1);
     rewind(f);
 
     //on lit et on verifie que les edges soient valide
@@ -138,20 +130,21 @@ struct Graph* prepare_graph(char* filename){
         }
         int weight = atoi(tok);
 
-        if (!is_station[src] || !is_station[dest]){
-            printf("Problème chemin : station inexistante (%d ou %d)\n", src, dest);
-            continue;
-        }
+        // if (!is_station[src] || !is_station[dest]){
+        //    printf("Problème chemin : station inexistante (%d ou %d)\n", src, dest);
+        //    continue;
+        // }
         
         add_edge(graph, src, dest, weight);
     }
 
     fclose(f);
-    for (int i = 0; i <= maxId; i++) {
-        if (is_station[i] && graph->array[i] == NULL) {
-            printf("Problème : la station %i (%s) n'a aucune arête\n", i, station_names[i]);
-        }
-    }
+    
+    // for (int i = 0; i <= max_id; i++) {
+    //     if (is_station[i] && graph->array[i] == NULL) {
+    //         printf("Problème : la station %i (%s) n'a aucune arête\n", i, station_names[i]);
+    //     }
+    // }
 
     return graph;
 }
