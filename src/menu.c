@@ -4,7 +4,7 @@
 #include "graph.h"
 #include "menu.h"
 
-void affichermenu() {
+void afficher_menu() {
     int nombre;
     int quitter = 0;
 

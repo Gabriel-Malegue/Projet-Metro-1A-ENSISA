@@ -10,6 +10,6 @@ int main() {
         return 1;
     }
         
-    affichermenu();
+    afficher_menu();
     return 0;
 }
