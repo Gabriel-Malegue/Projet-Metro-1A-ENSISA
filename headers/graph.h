@@ -12,9 +12,9 @@ struct Graph {
     struct AdjListNode** array;
 };
 
-struct AdjListNode* newAdjListNode(int dest, int weight);
-struct Graph* createGraph(int V);
-void addEdge(struct Graph* graph, int src, int dest, int weight);
-struct Graph* PrepareGraph(char *filename);
+struct AdjListNode* new_node(int dest, int weight);
+struct Graph* create_graph(int V);
+void add_edge(struct Graph* graph, int src, int dest, int weight);
+struct Graph* prepare_graph(char *filename);
 
 #endif
