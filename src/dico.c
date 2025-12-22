@@ -3,6 +3,7 @@
 
 #include "dico.h"
 
+
 unsigned int hash_function(const char * s, int dict_size) {
     unsigned int hash = 2166136261;
     const unsigned int fnv_prime = 16777619;
