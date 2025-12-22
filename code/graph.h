@@ -1,7 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-struct AdjListNode {
+struct AdjListNode {    
     int dest;
     int weight;
     struct AdjListNode* next;

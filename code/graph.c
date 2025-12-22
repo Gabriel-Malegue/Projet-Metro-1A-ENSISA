@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+
 
 #include "graph.h"
 
@@ -38,12 +38,14 @@ void addEdge(struct Graph* graph, int src, int dest, int weight) {
 }
 
 //Pour check si le caractère en question est un nombre
-int isNumber(char* s){
-    if (s[0]=='\0') 
+int isNumber(char *s){
+    if (s[0] == '\0')
         return 0;
-    for (int i=0;s[i];i++)
-        if (!isdigit(s[i])) 
+
+    for (int i = 0; s[i]; i++){
+        if (s[i] < '0' || s[i] > '9')
             return 0;
+    }
     return 1;
 }
 
