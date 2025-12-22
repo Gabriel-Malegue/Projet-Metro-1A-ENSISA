@@ -3,20 +3,21 @@
 
 #include "dico.h"
 
-unsigned int hash_function(const char * s) {
+unsigned int hash_function(const char * s, int dict_size) {
     unsigned int hash = 2166136261;
     const unsigned int fnv_prime = 16777619;
     for (const char* c = s; *c; c++) {
         hash ^= *c;
         hash *= fnv_prime;
     }
-    return hash % MAX_SIZE;
+    return hash % dict_size;
 }
 
 
-Dictionnary initialize_dictionnary() {
+Dictionnary initialize_dictionnary(int size) {
     Dictionnary new_dictionnary = malloc(sizeof(struct dictionnary));
-    for (int i = 0; i < MAX_SIZE; i++) 
+    new_dictionnary->size = size;
+    for (int i = 0; i < size; i++) 
         new_dictionnary->table[i] = NULL;
     
     return new_dictionnary;
@@ -26,7 +27,7 @@ Dictionnary initialize_dictionnary() {
 void free_dictionnary(Dictionnary dict) {
     if (!dict) return;
 
-    for (int i = 0; i < MAX_SIZE; i++) {
+    for (int i = 0; i < dict->size; i++) {
         Entry curr = dict->table[i];
         while (curr) {
             Entry next = curr->Next;
@@ -42,7 +43,7 @@ void free_dictionnary(Dictionnary dict) {
 
 
 void add_pair(Dictionnary dict, const char* key, int value) {
-    int slot = hash_function(key);
+    int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
     while (curr) {
         if (strcmp(curr->key, key) == 0) {
@@ -62,7 +63,7 @@ void add_pair(Dictionnary dict, const char* key, int value) {
 
 
 void remove_pair(Dictionnary dict, const char* key) {
-    int slot = hash_function(key);
+    int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
     Entry prev = NULL;
     while (curr) {
@@ -85,11 +86,9 @@ void remove_pair(Dictionnary dict, const char* key) {
 
 
 int get_value(Dictionnary dict, const char* key, int* output) {
-    int slot = hash_function(key);
+    int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
-    if (!curr) {
-        printf("Entry does not exist in specified dictionnary\n");
-    }
+
     while (curr) {
         if (strcmp(curr->key, key) == 0) {
             *output = curr->value;
@@ -102,7 +101,7 @@ int get_value(Dictionnary dict, const char* key, int* output) {
 }
 
 
-void print_value(Dictionnary dict, const char* key) {\
+void print_value(Dictionnary dict, const char* key) {
     int output;
     int value = get_value(dict, key, &output);
     if (value) {
