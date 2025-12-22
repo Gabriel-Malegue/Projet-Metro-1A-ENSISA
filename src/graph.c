@@ -62,7 +62,7 @@ struct Graph* prepare_graph(char* filename){
     }
 
     char line[MAX_LINE];
-    int max_id = 0; // Nombre de stations a la fin
+    int stations = 0; // Nombre de stations a la fin
 
     //on lit et on verifie que les station soient valide
     while (fgets(line, sizeof(line), f)){
@@ -98,10 +98,10 @@ struct Graph* prepare_graph(char* filename){
         // Ajouter la paire station ID
         //
 
-        if (id > max_id) max_id++;
+        stations++;
     }
 
-    struct Graph *graph = create_graph(max_id + 1);
+    struct Graph *graph = create_graph(stations + 1);
     rewind(f);
 
     //on lit et on verifie que les edges soient valide
@@ -140,7 +140,7 @@ struct Graph* prepare_graph(char* filename){
 
     fclose(f);
     
-    // for (int i = 0; i <= max_id; i++) {
+    // for (int i = 0; i <= stations; i++) {
     //     if (is_station[i] && graph->array[i] == NULL) {
     //         printf("Problème : la station %i (%s) n'a aucune arête\n", i, station_names[i]);
     //     }
