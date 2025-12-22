@@ -1,4 +1,5 @@
 # Ignorer les fichiers exécutables
+bin
 *.exe
 *.o
 *.out
