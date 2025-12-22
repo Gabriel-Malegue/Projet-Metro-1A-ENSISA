@@ -8,8 +8,8 @@
 #define MAX_LINE 300
 #define MAX_ID   300
 
-static char* stationNames[MAX_ID];
-static int isStation[MAX_ID];
+char* stationNames[MAX_ID];
+int isStation[MAX_ID];
 
 
 struct AdjListNode* newAdjListNode(int dest, int weight) {
@@ -155,3 +155,4 @@ struct Graph* PrepareGraph(char* filename){
 
     return graph;
 }
+
