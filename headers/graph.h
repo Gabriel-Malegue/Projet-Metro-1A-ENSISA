@@ -21,7 +21,4 @@ void free_graph(struct Graph* graph);
 void add_edge(struct Graph* graph, int src, int dest, int weight);
 struct Graph* prepare_graph(char *filename, Dictionnary dico);
 
-// Fonctions sur graphe
-void print_neighbors(struct Graph* g, int src);
-
 #endif

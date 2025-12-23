@@ -173,9 +173,3 @@ struct Graph* prepare_graph(char* filename, Dictionnary dico){
     return graph;
 }
 
-
-// Affiche les stations voisines
-void print_neighbors(struct Graph* g, int src) {
-    ;
-}
-
