@@ -16,12 +16,14 @@ struct AdjListNode* new_node(int dest, int weight) {
     return new_node;
 }
 
+
 struct Graph* create_graph(int V) {
     struct Graph* graph = malloc(sizeof(struct Graph));
     graph->V = V;
     graph->array = malloc(V * sizeof(struct AdjListNode*));
     return graph;
 }
+
 
 void add_edge(struct Graph* graph, int src, int dest, int weight) {
     // Rajoute l'arrete pour le premier sommet
@@ -35,6 +37,7 @@ void add_edge(struct Graph* graph, int src, int dest, int weight) {
     graph->array[dest] = node;
 }
 
+
 //Pour check si le caractère en question est un nombre
 int is_number(char *s){
     if (s[0] == '\0')
@@ -47,6 +50,7 @@ int is_number(char *s){
     return 1;
 }
 
+
 void remove_newline(char* s) {
     if (!s) return;
     size_t len = strlen(s);
@@ -54,6 +58,8 @@ void remove_newline(char* s) {
         s[len-1] = '\0';
 }
 
+
+// Lis les donnees d'un fichier et cree le graphe correspondant
 struct Graph* prepare_graph(char* filename){
     FILE* f = fopen(filename, "r");
     if (!f){
@@ -64,7 +70,7 @@ struct Graph* prepare_graph(char* filename){
     // Nombre de stations a la fin
     int stations = 0;
 
-    //on lit et on verifie que les station soient valide
+    //on lit et on verifie que les stations soient valides
     char line[MAX_LINE];
     while (fgets(line, sizeof(line), f)){
         remove_newline(line); 
