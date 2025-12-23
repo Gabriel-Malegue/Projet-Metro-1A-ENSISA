@@ -2,6 +2,7 @@
 
 #include "graph.h"
 #include "menu.h"
+#include "dico.h"
 
 int main() {
     struct Graph* g = prepare_graph("data/metro.txt");
@@ -11,5 +12,6 @@ int main() {
     }
         
     afficher_menu();
+
     return 0;
 }

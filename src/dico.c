@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -18,6 +19,7 @@ unsigned int hash_function(const char * s, int dict_size) {
 Dictionnary initialize_dictionnary(int size) {
     Dictionnary new_dictionnary = malloc(sizeof(struct dictionnary));
     new_dictionnary->size = size;
+    new_dictionnary->table = malloc(size * sizeof(Entry));
     for (int i = 0; i < size; i++) 
         new_dictionnary->table[i] = NULL;
     
@@ -39,6 +41,7 @@ void free_dictionnary(Dictionnary dict) {
         dict->table[i] = NULL;
     }
 
+    free(dict->table);
     free(dict);
 }
 
