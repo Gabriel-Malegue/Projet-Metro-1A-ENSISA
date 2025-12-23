@@ -95,7 +95,7 @@ int get_value(Dictionnary dict, const char* key, int* output) {
 
     while (curr) {
         if (strcmp(curr->key, key) == 0) {
-            *output = curr->value;
+            if (output) *output = curr->value;
             return 1;
         }
         curr = curr->Next;
