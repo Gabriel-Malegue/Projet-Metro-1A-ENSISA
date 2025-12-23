@@ -18,5 +18,7 @@ int main() {
         
     afficher_menu();
 
+    free_dictionnary(dico);
+    free_graph(g);
     return 0;
 }

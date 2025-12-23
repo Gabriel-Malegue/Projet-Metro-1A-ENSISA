@@ -26,6 +26,26 @@ struct Graph* create_graph(int V) {
 }
 
 
+void free_graph(struct Graph* graph) {
+    if (!graph) return;
+
+    for (int i = 0; i < graph->V; i++) {
+        struct AdjListNode* curr = graph->array[i];
+        while (curr) {
+            struct AdjListNode* next = curr->next;
+            free(curr);
+            curr = next;
+        }
+        graph->array[i] = NULL;
+    }
+
+    free(graph->array);
+    graph->array = NULL;
+
+    free(graph);
+}
+
+
 void add_edge(struct Graph* graph, int src, int dest, int weight) {
     // Rajoute l'arrete pour le premier sommet
     struct AdjListNode* node = new_node(dest, weight);
