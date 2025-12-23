@@ -106,7 +106,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary dico){
     }
 
     struct Graph *graph = create_graph(stations + 1);
-    rewind(f);
+    rewind(f); // On pourrait juste traverse une fois mais on est pas sur que EDGE et STATIONS soient toujours ordonnees
 
     // On lit et on verifie que les edges soient valides
     while (fgets(line, sizeof(line), f)){
