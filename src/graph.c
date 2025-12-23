@@ -84,7 +84,7 @@ struct Graph* prepare_graph(char* filename){
         tok = strtok(NULL, ";");
 
         if (!tok || !is_number(tok)){
-            printf( "Problème Station : ID de %s invalide\n",tok);
+            printf( "Probleme Station : ID de %s invalide\n",tok);
             continue;
         }
 
@@ -92,7 +92,7 @@ struct Graph* prepare_graph(char* filename){
 
         tok = strtok(NULL, "\n");
         if (!tok || strlen(tok)==0) {
-            fprintf(stderr, "Problème: Station pas de nom pour l'id %i\n", id);
+            fprintf(stderr, "Probleme: Station pas de nom pour l'id %i\n", id);
             continue;
         }
 
@@ -132,13 +132,13 @@ struct Graph* prepare_graph(char* filename){
 
         tok = strtok(NULL, "\n");
         if (!tok || !is_number(tok)){
-            printf("Problème chemin %i à %i : pas de duré de trajet\n", src, dest);
+            printf("Probleme chemin %i à %i : pas de dure de trajet\n", src, dest);
             continue;
         }
         int weight = atoi(tok);
 
         // if (!is_station[src] || !is_station[dest]){
-        //    printf("Problème chemin : station inexistante (%d ou %d)\n", src, dest);
+        //    printf("Probleme chemin : station inexistante (%d ou %d)\n", src, dest);
         //    continue;
         // }
         
