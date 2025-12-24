@@ -3,6 +3,7 @@
 
 #include "graph.h"
 #include "menu.h"
+#include "dico.h"
 
 void afficher_menu() {
     int nombre;
