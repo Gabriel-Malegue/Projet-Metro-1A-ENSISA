@@ -114,13 +114,6 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         station_count++;
     }
 
-    if (station_count == 0) {
-        fprintf(stderr,"Aucune station valide trouvée\n");
-        fclose(f);
-        return NULL;
-    }
-
-        // Taille dic = station_count * 2 (évite collisions)
     *dico = initialize_dictionnary(station_count * 2);
 
     rewind(f);
@@ -164,7 +157,6 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
 
 
     }
-
 
     struct Graph *graph = create_graph(stations + 1);
     rewind(f); // On pourrait juste traverse une fois mais on est pas sur que EDGE et STATIONS soient toujours ordonnees

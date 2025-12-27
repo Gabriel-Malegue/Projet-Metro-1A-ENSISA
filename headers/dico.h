@@ -1,8 +1,6 @@
 #ifndef DICO_H
 #define DICO_H
 
-#define MAX_SIZE 2048 // A rendre dynamique
-
 struct dictionnary_entry {
     char* key;
     int value;
