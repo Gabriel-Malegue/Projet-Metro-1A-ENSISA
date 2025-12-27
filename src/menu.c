@@ -22,7 +22,7 @@ int choisir_station(Dictionnary* dico){
     return id;
 }
 
-void afficher_menu(Dictionnary* dico,struct Graph* graph) {
+void afficher_menu(Dictionnary* dico,struct Graph* graph){
     int nombre;
     int quitter = 0;
 
@@ -35,15 +35,15 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph) {
         printf("0 - Quitter\n");
         printf("Votre choix : ");
 
-        if (scanf("%d", &nombre) != 1) {
+        if (scanf("%d", &nombre) != 1){
             printf("Entree invalide !\n");
         }
         int id;
-        switch(nombre) {
+        switch(nombre){
             case 1: 
                 printf("Sur quelle station souhaitez-vous des information ?\n");
                 id = choisir_station(dico);
-                if (id != -1) {
+                if (id != -1){
                     info_station(graph, id);
                 }
                 break;
@@ -60,6 +60,7 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph) {
 
                 printf("Station d'arriver?\n");
                 int id_arriver = choisir_station(dico);
+
                 if (id != -1) {
                     chemin_minimal(dico, graph, id_depart, id_arriver);
                 } 
@@ -67,7 +68,9 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph) {
             case 4: 
                  degre_sortant(dico, graph, id);
                 break;
-            case 0: quitter = 1;break;
+            case 0: 
+                quitter = 1;
+                break;
         }
     }
 }

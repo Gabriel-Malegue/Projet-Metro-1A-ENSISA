@@ -3,13 +3,13 @@
 
 #include "dico.h"
 
-struct AdjListNode {    
+struct AdjListNode{    
     int dest;
     int weight;
     struct AdjListNode* next;
 };
 
-struct Graph {
+struct Graph{
     int V;
     struct AdjListNode** array;
     char** station_names; //pour obtenir un nom de station à partir d'un ID

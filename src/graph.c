@@ -8,7 +8,7 @@
 #define MAX_LINE 256 // Taille maximale pour une entree
 
 
-struct AdjListNode* new_node(int dest, int weight) {
+struct AdjListNode* new_node(int dest, int weight){
     struct AdjListNode* new_node = malloc(sizeof(struct AdjListNode));
     new_node->dest = dest;
     new_node->weight = weight;
@@ -17,7 +17,7 @@ struct AdjListNode* new_node(int dest, int weight) {
 }
 
 
-struct Graph* create_graph(int V) {
+struct Graph* create_graph(int V){
     struct Graph* graph = malloc(sizeof(struct Graph));
     graph->V = V;
     graph->array = malloc(V * sizeof(struct AdjListNode*));
@@ -27,10 +27,11 @@ struct Graph* create_graph(int V) {
 }
 
 
-void free_graph(struct Graph* graph) {
-    if (!graph) return;
+void free_graph(struct Graph* graph){
+    if (!graph) 
+        return;
 
-    for (int i = 0; i < graph->V; i++) {
+    for (int i = 0; i < graph->V; i++){
         struct AdjListNode* curr = graph->array[i];
         while (curr) {
             struct AdjListNode* next = curr->next;
@@ -52,7 +53,7 @@ void free_graph(struct Graph* graph) {
 }
 
 
-void add_edge(struct Graph* graph, int src, int dest, int weight) {
+void add_edge(struct Graph* graph, int src, int dest, int weight){
     // Rajoute l'arrete pour le premier sommet
     struct AdjListNode* node = new_node(dest, weight);
     node->next = graph->array[src];
@@ -73,7 +74,7 @@ int is_number(char *s){
 }
 
 
-void remove_newline(char* s) {
+void remove_newline(char* s){
     if (!s) return;
     size_t len = strlen(s);
     if (len > 0 && s[len-1] == '\n')
@@ -93,7 +94,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
     int station_count = 0;
     int max_id = -1;
 
-    while (fgets(line, sizeof(line), f)) {
+    while (fgets(line, sizeof(line), f)){
         remove_newline(line);
 
         if (line[0] == '#' || line[0] == '\0')
@@ -112,10 +113,6 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         if (id > max_id) 
             max_id = id;
 
-        tok = strtok(NULL, "\n");
-        if (!tok || strlen(tok) == 0)
-            continue;
-
         station_count++;
     }
 
@@ -124,8 +121,6 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
     graph->station_names = calloc(max_id + 1, sizeof(char*));
 
     rewind(f);
-
-
 
     // On lit et on verifie que les stations soient valides
     while (fgets(line, sizeof(line), f)){
@@ -147,12 +142,12 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         int id = atoi(tok);
 
         tok = strtok(NULL, "\n");
-        if (!tok || strlen(tok)==0) {
+        if (!tok || strlen(tok)==0){
             fprintf(stderr, "Probleme: Station pas de nom pour l'id %i\n", id);
             continue;
         }
 
-        if (get_value(*dico, tok, NULL)) {
+        if (get_value(*dico, tok, NULL)){
             fprintf(stderr, "Probleme: La station %s existe deja\n", tok);
             continue;
         }
@@ -200,8 +195,8 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
 
     fclose(f);
     
-    for (int i = 0; i <= max_id; i++) {
-        if (graph->array[i] == NULL) {
+    for (int i = 0; i <= max_id; i++){
+        if (graph->array[i] == NULL){
             fprintf(stderr, "Probleme: la station %i n'a aucune arrete\n", i);
         }
     }
