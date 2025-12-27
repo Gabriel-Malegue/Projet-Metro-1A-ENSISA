@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "graph.h"
+#include "dico.h"
 
 #define MAX_LINE 256 // Taille maximale pour une entree
 
@@ -81,18 +82,54 @@ void remove_newline(char* s) {
 
 
 // Lis les donnees d'un fichier et cree le graphe correspondant
-struct Graph* prepare_graph(char* filename, Dictionnary dico){
+struct Graph* prepare_graph(char* filename, Dictionnary* dico){
     FILE* f = fopen(filename, "r");
     if (!f){
         fprintf(stderr, "Erreur pas de fichier %s \n", filename);
         return NULL;
     }
 
+    char line[MAX_LINE];
+    int station_count = 0;
+
+    while (fgets(line, sizeof(line), f)) {
+        remove_newline(line);
+
+        if (line[0] == '#' || line[0] == '\0')
+            continue;
+
+        if (strncmp(line, "STATION", 7) != 0)
+            continue;
+
+        char* tok = strtok(line, ";");
+
+        tok = strtok(NULL, ";");
+        if (!tok || !is_number(tok))
+            continue;
+
+        tok = strtok(NULL, "\n");
+        if (!tok || strlen(tok) == 0)
+            continue;
+
+        station_count++;
+    }
+
+    if (station_count == 0) {
+        fprintf(stderr,"Aucune station valide trouvée\n");
+        fclose(f);
+        return NULL;
+    }
+
+        // Taille dic = station_count * 2 (évite collisions)
+    *dico = initialize_dictionnary(station_count * 2);
+
+    rewind(f);
+
     // Nombre de stations a la fin
     int stations = -1;
 
+
     // On lit et on verifie que les stations soient valides
-    char line[MAX_LINE];
     while (fgets(line, sizeof(line), f)){
         remove_newline(line); 
         if (line[0] == '#' || line[0] == '\0')
@@ -117,13 +154,17 @@ struct Graph* prepare_graph(char* filename, Dictionnary dico){
             continue;
         }
 
-        if (get_value(dico, tok, NULL)) {
+        if (get_value(*dico, tok, NULL)) {
             fprintf(stderr, "Probleme: La station %s existe deja\n", tok);
+            continue;
         }
 
-        add_pair(dico, tok, id);
+        add_pair(*dico, tok, id);
         if (id > stations) stations = id;
+
+
     }
+
 
     struct Graph *graph = create_graph(stations + 1);
     rewind(f); // On pourrait juste traverse une fois mais on est pas sur que EDGE et STATIONS soient toujours ordonnees

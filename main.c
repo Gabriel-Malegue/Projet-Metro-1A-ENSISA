@@ -9,10 +9,10 @@
 
 int main() {
     // Prepare le dictionnaire
-    Dictionnary dico = initialize_dictionnary(DICT_SIZE);
+    Dictionnary dico = NULL; //initialize_dictionnary(DICT_SIZE);
 
     // Prepare le graph, intialise le dictionnaire
-    struct Graph* g = prepare_graph("data/metro.txt", dico);
+    struct Graph* g = prepare_graph("data/metro.txt", &dico);
     if (!g) {
         fprintf(stderr, "Le graphe n'a pas pu etre initialiser\n");
         return 1;
