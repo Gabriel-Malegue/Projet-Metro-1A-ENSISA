@@ -6,6 +6,22 @@
 #include "dico.h"
 #include "fonction_station.h"
 
+int choisir_station(Dictionnary* dico){
+    char station[50];
+    scanf(" %[^\n]",station);
+    int id;
+    if(is_number(station)==1){
+        id=atoi(station);
+    }
+    else{
+        if (!get_value(*dico, station, &id)) {
+            printf("Station %s non trouvée !\n", station);
+            return -1;
+        }
+    }
+    return id;
+}
+
 void afficher_menu(Dictionnary* dico,struct Graph* graph) {
     int nombre;
     int quitter = 0;
@@ -22,27 +38,35 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph) {
         if (scanf("%d", &nombre) != 1) {
             printf("Entree invalide !\n");
         }
-
+        int id;
         switch(nombre) {
             case 1: 
-                char station[20];
                 printf("Sur quelle station souhaitez-vous des information ?\n");
-                scanf(" %[^\n]",station);
-                int id;
-                if(is_number(station)==1){
-                    id=atoi(station);
+                id = choisir_station(dico);
+                if (id != -1) {
+                    info_station(dico, graph, id);
                 }
-                else{
-                    if (!get_value(*dico, station, &id)) {
-                        printf("Station %s non trouvée !\n", station);
-                        break;
-                    }
-                }
-                info_station(dico, graph, id);
                 break;
-            case 2: printf("Appelle fonction 2 \n"); break;
-            case 3: printf("Appelle fonction 3 \n"); break;
-            case 4: printf("Appelle fonction 4 \n"); break;
+            case 2: 
+                printf("De quelle station souhaitez-vous connaitre les voisins ?\n");
+                id = choisir_station(dico);
+                if (id != -1) {
+                    station_voisine(dico, graph, id);
+                } 
+                break;
+            case 3: 
+                printf("Station de départ?\n");
+                int id_depart = choisir_station(dico);
+
+                printf("Station d'arriver?\n");
+                int id_arriver = choisir_station(dico);
+                if (id != -1) {
+                    chemin_minimal(dico, graph, id_depart, id_arriver);
+                } 
+                break;
+            case 4: 
+                 degre_sortant(dico, graph, id);
+                break;
             case 0: quitter = 1;break;
         }
     }
