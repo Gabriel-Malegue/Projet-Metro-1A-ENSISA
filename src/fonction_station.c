@@ -7,9 +7,8 @@
 #include "menu.h"
 #include "fonction_station.h"
 
-void info_station(Dictionnary* dico, struct Graph* graph, int id){
-    (void) dico;
-    printf("Nom : (la faut trouver un moyen de recup le nom à partir de l'ID)\n");
+void info_station(struct Graph* graph, int id){
+    printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
 
     int degre = 0;
@@ -23,10 +22,10 @@ void info_station(Dictionnary* dico, struct Graph* graph, int id){
     printf("Degré sortant : %i \n", degre);
 }
 
-void station_voisine(Dictionnary* dico, struct Graph* graph, int id){
-    (void) dico;
+void station_voisine(struct Graph* graph, int id){
     (void) graph;
     (void) id;
+
     printf("Work in progress bientot dispo \n");
 }
 

@@ -12,6 +12,7 @@ struct AdjListNode {
 struct Graph {
     int V;
     struct AdjListNode** array;
+    char** station_names; //pour obtenir un nom de station à partir d'un ID
 };
 
 // Creation du graphe

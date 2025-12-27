@@ -43,6 +43,11 @@ void free_graph(struct Graph* graph) {
     free(graph->array);
     graph->array = NULL;
 
+    for(int i = 0; i < graph->V; i++) //on libère le tableau des noms de stations
+        free(graph->station_names[i]);
+
+    free(graph->station_names);
+
     free(graph);
 }
 
@@ -86,6 +91,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
 
     char line[MAX_LINE];
     int station_count = 0;
+    int max_id = -1;
 
     while (fgets(line, sizeof(line), f)) {
         remove_newline(line);
@@ -102,6 +108,10 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         if (!tok || !is_number(tok))
             continue;
 
+        int id = atoi(tok);
+        if (id > max_id) 
+            max_id = id;
+
         tok = strtok(NULL, "\n");
         if (!tok || strlen(tok) == 0)
             continue;
@@ -110,11 +120,11 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
     }
 
     *dico = initialize_dictionnary(station_count * 2);
+    struct Graph *graph = create_graph(max_id + 1);
+    graph->station_names = calloc(max_id + 1, sizeof(char*));
 
     rewind(f);
 
-    // Nombre de stations a la fin
-    int stations = -1;
 
 
     // On lit et on verifie que les stations soient valides
@@ -148,12 +158,10 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         }
 
         add_pair(*dico, tok, id);
-        if (id > stations) stations = id;
-
+        graph->station_names[id] = strdup(tok);
 
     }
-
-    struct Graph *graph = create_graph(stations + 1);
+    
     rewind(f); // On pourrait juste traverse une fois mais on est pas sur que EDGE et STATIONS soient toujours ordonnees
 
     // On lit et on verifie que les edges soient valides
@@ -182,7 +190,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         }
         int weight = atoi(tok);
 
-        if (src < 0 || src > stations || dest < 0 || dest > stations) {
+        if (src < 0 || src > max_id || dest < 0 || dest > max_id) {
             fprintf(stderr, "Probleme chemin: station inexistante (%d ou %d)\n", src, dest);
             continue;
         }
@@ -192,7 +200,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
 
     fclose(f);
     
-    for (int i = 0; i <= stations; i++) {
+    for (int i = 0; i <= max_id; i++) {
         if (graph->array[i] == NULL) {
             fprintf(stderr, "Probleme: la station %i n'a aucune arrete\n", i);
         }

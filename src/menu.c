@@ -44,14 +44,14 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph) {
                 printf("Sur quelle station souhaitez-vous des information ?\n");
                 id = choisir_station(dico);
                 if (id != -1) {
-                    info_station(dico, graph, id);
+                    info_station(graph, id);
                 }
                 break;
             case 2: 
                 printf("De quelle station souhaitez-vous connaitre les voisins ?\n");
                 id = choisir_station(dico);
                 if (id != -1) {
-                    station_voisine(dico, graph, id);
+                    station_voisine(graph, id);
                 } 
                 break;
             case 3: 
