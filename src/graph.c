@@ -52,11 +52,6 @@ void add_edge(struct Graph* graph, int src, int dest, int weight) {
     struct AdjListNode* node = new_node(dest, weight);
     node->next = graph->array[src];
     graph->array[src] = node;
-
-    // Rajoute l'arrete pour le deuxieme sommet
-    node = new_node(src, weight);
-    node->next = graph->array[dest];
-    graph->array[dest] = node;
 }
 
 

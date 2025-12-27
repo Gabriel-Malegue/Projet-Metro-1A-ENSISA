@@ -19,7 +19,7 @@ int main() {
     }
     
     // Affichage
-    afficher_menu();
+    afficher_menu(&dico,g);
 
     free_dictionnary(dico);
     free_graph(g);
