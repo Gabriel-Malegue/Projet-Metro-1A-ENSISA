@@ -15,7 +15,7 @@ void info_station(Dictionnary* dico, struct Graph* graph, int id){
     int degre = 0;
 
     struct AdjListNode* curr = graph->array[id];
-        while (curr) {
+        while(curr){
             degre++;
             curr = curr->next;
         }
