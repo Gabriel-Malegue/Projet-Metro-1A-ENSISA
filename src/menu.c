@@ -6,7 +6,7 @@
 #include "dico.h"
 #include "fonction_station.h"
 
-int choisir_station(Dictionnary* dico){
+int choisir_station(Dictionnary dico){
     char station[50];
     scanf(" %[^\n]",station);
     int id;
@@ -14,7 +14,7 @@ int choisir_station(Dictionnary* dico){
         id=atoi(station);
     }
     else{
-        if (!get_value(*dico, station, &id)) {
+        if (!get_value(dico, station, &id)) {
             printf("Station %s non trouvée !\n", station);
             return -1;
         }
@@ -22,7 +22,7 @@ int choisir_station(Dictionnary* dico){
     return id;
 }
 
-void afficher_menu(Dictionnary* dico,struct Graph* graph){
+void afficher_menu(Dictionnary dico,struct Graph* graph){
     int nombre;
     int quitter = 0;
 

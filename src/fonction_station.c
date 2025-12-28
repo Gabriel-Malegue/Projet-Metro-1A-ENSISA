@@ -39,7 +39,7 @@ void station_voisine(struct Graph* graph, int id){
     }
 }
 
-void chemin_minimal(Dictionnary* dico, struct Graph* graph, int id_depart, int id_arriver){
+void chemin_minimal(Dictionnary dico, struct Graph* graph, int id_depart, int id_arriver){
     (void) dico;
     (void) graph;
     (void) id_depart;
