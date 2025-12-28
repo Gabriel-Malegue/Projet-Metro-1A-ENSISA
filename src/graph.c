@@ -8,15 +8,6 @@
 #define MAX_LINE 200 // Taille maximale pour une entree
 
 
-struct AdjListNode* new_node(int dest, int weight){
-    struct AdjListNode* new_node = malloc(sizeof(struct AdjListNode));
-    new_node->dest = dest;
-    new_node->weight = weight;
-    new_node->next = NULL;
-    return new_node;
-}
-
-
 struct Graph* create_graph(int V){
     struct Graph* graph = malloc(sizeof(struct Graph));
     graph->V = V;
@@ -50,6 +41,15 @@ void free_graph(struct Graph* graph){
     free(graph->station_names);
 
     free(graph);
+}
+
+
+struct AdjListNode* new_node(int dest, int weight){
+    struct AdjListNode* new_node = malloc(sizeof(struct AdjListNode));
+    new_node->dest = dest;
+    new_node->weight = weight;
+    new_node->next = NULL;
+    return new_node;
 }
 
 

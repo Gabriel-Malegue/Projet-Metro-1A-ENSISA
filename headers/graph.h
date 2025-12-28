@@ -16,9 +16,9 @@ struct Graph{
 };
 
 // Creation du graphe
-struct AdjListNode* new_node(int dest, int weight);
 struct Graph* create_graph(int V);
 void free_graph(struct Graph* graph);
+struct AdjListNode* new_node(int dest, int weight);
 void add_edge(struct Graph* graph, int src, int dest, int weight);
 struct Graph* prepare_graph(char *filename, Dictionnary* dico);
 
