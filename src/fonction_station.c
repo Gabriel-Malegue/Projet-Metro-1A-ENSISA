@@ -9,6 +9,7 @@
 
 #define INF 100000
 
+
 void info_station(struct Graph* graph, int id){
     printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
@@ -41,6 +42,7 @@ void station_voisine(struct Graph* graph, int id){
     }
 }
 
+
 int dijkstra(struct Graph* g, int src, int dst){
     int size = g->V;
 
@@ -51,10 +53,10 @@ int dijkstra(struct Graph* g, int src, int dst){
         visited[i] = 0;
         dist[i] = INF;
     }
-
+    
     dist[src] = 0;
 
-    for (int c = 0; c < size - 2; c++) {
+    for (int c = 0; c < size - 1; c++) {
         int u = -1;
         int u_val = INF;
 
@@ -65,6 +67,7 @@ int dijkstra(struct Graph* g, int src, int dst){
             }
         }
 
+        if (u == -1) break;
         visited[u] = 1;
 
         struct AdjListNode* node = g->array[u];
@@ -83,6 +86,7 @@ int dijkstra(struct Graph* g, int src, int dst){
     return dist[dst];
 }
 
+
 void chemin_minimal(Dictionnary dico, struct Graph* graph, int id_depart, int id_arriver){
     (void) dico;
     (void) graph;
@@ -90,6 +94,7 @@ void chemin_minimal(Dictionnary dico, struct Graph* graph, int id_depart, int id
     (void) id_arriver;
     printf("Work in progress bientot dispo (fin bientot j'ai menti faut implémenter le Dijkstra kaka) \n");
 }
+
 
 void degre_sortant(struct Graph* graph){
     Deg_Sta deg = degre_entry(graph); //on initialise le tableau des degres 
