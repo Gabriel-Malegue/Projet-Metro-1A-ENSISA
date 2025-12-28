@@ -116,13 +116,13 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         station_count++;
     }
 
-    *dico = initialize_dictionnary(station_count*2); //on  initialise à 2 fois la taille pour éviter les colisions
+    *dico = initialize_dictionnary(station_count * 2); // 2 fois le nbr de stations pour eviter les collisions
     struct Graph *graph = create_graph(max_id + 1);
-    graph->station_names = calloc(max_id + 1, sizeof(char*));
+    graph->station_names = calloc(max_id + 1, sizeof(char *));
 
     rewind(f);
 
-    // On lit et on verifie que les stations soient valides
+    // Lis et verifie que les stations soient valides
     while (fgets(line, sizeof(line), f)){
         remove_newline(line); 
         if (line[0] == '#' || line[0] == '\0')
@@ -157,9 +157,10 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
 
     }
     
-    rewind(f); // On pourrait juste traverse une fois mais on est pas sur que EDGE et STATIONS soient toujours ordonnees
+     // Traverse plusieurs fois au cas ou STATION et EDGE non ordonnes
+    rewind(f);
 
-    // On lit et on verifie que les edges soient valides
+    // Lis et verifie que les edges soient valides
     while (fgets(line, sizeof(line), f)){
         remove_newline(line);
         if (line[0] == '#' || line[0] == '\0')
