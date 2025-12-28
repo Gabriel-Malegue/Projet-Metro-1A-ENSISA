@@ -7,6 +7,8 @@
 #include "menu.h"
 #include "trie.h"
 
+#define INF 100000
+
 void info_station(struct Graph* graph, int id){
     printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
@@ -19,7 +21,7 @@ void info_station(struct Graph* graph, int id){
             curr = curr->next;
         }
     
-    printf("Degré sortant : %i \n", degre);
+    printf("Degre sortant : %i \n", degre);
 }
 
 void station_voisine(struct Graph* graph, int id){
@@ -37,6 +39,48 @@ void station_voisine(struct Graph* graph, int id){
         printf("%i - %s a %i minutes\n", voisin_id, nom_voisin, temps);
         curr = curr->next;
     }
+}
+
+int dijkstra(struct Graph* g, int src, int dst){
+    int size = g->V;
+
+    int visited[size];
+    int dist[size];
+
+    for (int i = 0; i < size; i++) {
+        visited[i] = 0;
+        dist[i] = INF;
+    }
+
+    dist[src] = 0;
+
+    for (int c = 0; c < size - 2; c++) {
+        int u = -1;
+        int u_val = INF;
+
+        for(int i = 0; i < size; i++) {
+            if (dist[i] < u_val && !visited[i]) {
+                u = i;
+                u_val = dist[i];
+            }
+        }
+
+        visited[u] = 1;
+
+        struct AdjListNode* node = g->array[u];
+        while (node) {
+            int dest = node->dest;
+            if (!visited[dest]) {
+                if (u_val + node->weight < dist[dest]) {
+                    dist[dest] = u_val + node->weight;
+                }  
+            }
+        
+            node = node->next;
+        }
+    }
+
+    return dist[dst];
 }
 
 void chemin_minimal(Dictionnary dico, struct Graph* graph, int id_depart, int id_arriver){
