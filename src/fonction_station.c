@@ -53,7 +53,7 @@ int dijkstra(struct Graph* g, int src, int dst){
         visited[i] = 0;
         dist[i] = INF;
     }
-    
+
     dist[src] = 0;
 
     for (int c = 0; c < size - 1; c++) {
@@ -87,12 +87,9 @@ int dijkstra(struct Graph* g, int src, int dst){
 }
 
 
-void chemin_minimal(Dictionnary dico, struct Graph* graph, int id_depart, int id_arriver){
-    (void) dico;
-    (void) graph;
-    (void) id_depart;
-    (void) id_arriver;
-    printf("Work in progress bientot dispo (fin bientot j'ai menti faut implémenter le Dijkstra kaka) \n");
+void chemin_minimal(struct Graph* graph, int id_depart, int id_arriver){
+    int distance = dijkstra(graph, id_depart, id_arriver);
+    printf("Distance entre %i et %i : %i \n", id_depart, id_arriver, distance);
 }
 
 

@@ -68,10 +68,10 @@ void afficher_menu(Dictionnary dico,struct Graph* graph){
                     id_arriver = choisir_station(dico);
                 }
 
-                chemin_minimal(dico, graph, id_depart, id_arriver); 
+                chemin_minimal(graph, id_depart, id_arriver); 
                 break;
             case 4:
-                 degre_sortant(graph);
+                degre_sortant(graph);
                 break;
 
             case 0:
