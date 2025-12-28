@@ -9,19 +9,21 @@
 
 int main() {
     // Prepare le dictionnaire
-    Dictionnary dico = NULL; //initialize_dictionnary(DICT_SIZE);
+    Dictionnary dico = NULL; 
 
     // Prepare le graph, intialise le dictionnaire
-    struct Graph* g = prepare_graph("data/metro.txt", &dico);
-    if (!g) {
+    struct Graph* graph = prepare_graph("data/metro.txt", &dico);
+    if (!graph) {
         fprintf(stderr, "Le graphe n'a pas pu etre initialiser\n");
         return 1;
     }
     
     // Affichage
-    afficher_menu(&dico,g);
+    afficher_menu(&dico,graph);
 
+    //Libérage de la mémoire
     free_dictionnary(dico);
-    free_graph(g);
+    free_graph(graph);
+
     return 0;
 }

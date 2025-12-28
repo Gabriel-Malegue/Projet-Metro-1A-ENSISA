@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "dico.h"
+#include "fonction_station.h"
 #include "graph.h"
 #include "menu.h"
-#include "fonction_station.h"
+#include "trie.h"
 
 void info_station(struct Graph* graph, int id){
     printf("Nom : %s \n", graph->station_names[id]);
@@ -44,13 +44,34 @@ void chemin_minimal(Dictionnary* dico, struct Graph* graph, int id_depart, int i
     (void) graph;
     (void) id_depart;
     (void) id_arriver;
-    printf("Work in progress bientot dispo (fin bientot j'ai menti faut implémenter le Dijestra kaka) \n");
+    printf("Work in progress bientot dispo (fin bientot j'ai menti faut implémenter le Dijkstra kaka) \n");
 }
 
-void degre_sortant(Dictionnary* dico, struct Graph* graph, int id ){
-    (void) dico;
-    (void) graph;  
-    (void) id;
+void degre_sortant(struct Graph* graph){
+    Deg_Sta deg = degre_entry(graph); //on initialise le tableau des degres 
 
-    printf("Work in progress bientot dispo (c'est faux ça a chiant l'air à implémenter ça aussi) \n");
+    //Tri par selection
+    Deg_Sta deg_selection = malloc(graph->V * sizeof(struct degre_station));
+    memcpy(deg_selection, deg, graph->V * sizeof(struct degre_station));
+    selection_sort(deg_selection, graph->V);
+    printf("\n");
+
+    //Trie par insertion
+    Deg_Sta deg_insertion = malloc(graph->V * sizeof(struct degre_station));
+    memcpy(deg_insertion, deg, graph->V * sizeof(struct degre_station));
+    insertion_sort(deg_insertion, graph->V);
+    printf("\n");
+
+    //Trie rapide (jsp ce que c'est)
+    Deg_Sta deg_fast = malloc(graph->V * sizeof(struct degre_station));
+    memcpy(deg_fast, deg, graph->V * sizeof(struct degre_station));
+    //fast_sort(deg_fast, graph->V); (faut creer la fonction)
+    printf("\n");
+    
+    for(int i=graph->V-1; i>=0; i--){
+        printf("Station %i - %s -> Degre Sortant : %i \n", deg_insertion[i].id, 
+            graph->station_names[deg_insertion[i].id] ,deg_insertion[i].degre);
+    }
+    
+    free(deg);
 }

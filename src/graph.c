@@ -5,7 +5,7 @@
 #include "graph.h"
 #include "dico.h"
 
-#define MAX_LINE 256 // Taille maximale pour une entree
+#define MAX_LINE 200 // Taille maximale pour une entree
 
 
 struct AdjListNode* new_node(int dest, int weight){
@@ -116,7 +116,7 @@ struct Graph* prepare_graph(char* filename, Dictionnary* dico){
         station_count++;
     }
 
-    *dico = initialize_dictionnary(station_count * 2);
+    *dico = initialize_dictionnary(station_count*2); //on  initialise à 2 fois la taille pour éviter les colisions
     struct Graph *graph = create_graph(max_id + 1);
     graph->station_names = calloc(max_id + 1, sizeof(char*));
 

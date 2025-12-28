@@ -66,7 +66,7 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph){
                 } 
                 break;
             case 4: 
-                 degre_sortant(dico, graph, id);
+                 degre_sortant(graph);
                 break;
             case 0: 
                 quitter = 1;
