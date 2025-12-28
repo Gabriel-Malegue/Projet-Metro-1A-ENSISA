@@ -23,10 +23,20 @@ void info_station(struct Graph* graph, int id){
 }
 
 void station_voisine(struct Graph* graph, int id){
-    (void) graph;
-    (void) id;
+    struct AdjListNode* curr = graph->array[id];
+    if(!curr){
+        printf("La station %i - %s n'a aucun voisin.\n", id, graph->station_names[id]);
+        return;
+    }
 
-    printf("Work in progress bientot dispo \n");
+    printf("Station voisine de  %i - %s :\n", id, graph->station_names[id]);
+    while(curr){
+        int voisin_id = curr->dest;
+        int temps = curr->weight;
+        char* nom_voisin = graph->station_names[voisin_id];
+        printf("%i - %s a %i minutes\n", voisin_id, nom_voisin, temps);
+        curr = curr->next;
+    }
 }
 
 void chemin_minimal(Dictionnary* dico, struct Graph* graph, int id_depart, int id_arriver){

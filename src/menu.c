@@ -27,11 +27,11 @@ void afficher_menu(Dictionnary* dico,struct Graph* graph){
     int quitter = 0;
 
     while (quitter != 1) {
-        printf("\n===== MENU RESEAU DE TRANSPORT =====\n");
+        printf("\n======== MENU RESEAU DE TRANSPORT ========\n");
         printf("1 - Afficher les informations d'une station\n");
         printf("2 - Lister les voisins d'une station\n");
-        printf("3 - Calculer un chemin minimal\n");
-        printf("4 - Afficher les stations triees par degre\n");
+        printf("3 - Chemin le plus rapide entre 2 stations\n");
+        printf("4 - Afficher les stations triees par degre de connexion\n");
         printf("0 - Quitter\n");
         printf("Votre choix : ");
 
