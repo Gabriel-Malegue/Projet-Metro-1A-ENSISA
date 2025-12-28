@@ -62,15 +62,15 @@ void degre_sortant(struct Graph* graph){
     insertion_sort(deg_insertion, graph->V);
     printf("\n");
 
-    //Trie rapide (jsp ce que c'est)
-    Deg_Sta deg_fast = malloc(graph->V * sizeof(struct degre_station));
-    memcpy(deg_fast, deg, graph->V * sizeof(struct degre_station));
-    //fast_sort(deg_fast, graph->V); (faut creer la fonction)
+    //Trie rapide
+    Deg_Sta deg_quick = malloc(graph->V * sizeof(struct degre_station));
+    memcpy(deg_quick, deg, graph->V * sizeof(struct degre_station));
+    quick_sort(deg_quick, graph->V); 
     printf("\n");
     
     for(int i=graph->V-1; i>=0; i--){
-        printf("Station %i - %s -> Degre Sortant : %i \n", deg_insertion[i].id, 
-            graph->station_names[deg_insertion[i].id] ,deg_insertion[i].degre);
+        printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id, 
+            graph->station_names[deg_quick[i].id] ,deg_quick[i].degre);
     }
     
     free(deg);

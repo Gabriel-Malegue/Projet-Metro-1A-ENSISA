@@ -27,7 +27,7 @@ void afficher_menu(Dictionnary dico,struct Graph* graph){
     int quitter = 0;
 
     while (quitter != 1) {
-        printf("\n======== MENU RESEAU DE TRANSPORT ========\n");
+        printf("\n=============== MENU RESEAU DE TRANSPORT ===============\n");
         printf("1 - Afficher les informations d'une station\n");
         printf("2 - Lister les voisins d'une station\n");
         printf("3 - Chemin le plus rapide entre 2 stations\n");
@@ -47,30 +47,37 @@ void afficher_menu(Dictionnary dico,struct Graph* graph){
                     info_station(graph, id);
                 }
                 break;
-            case 2: 
+            case 2:
                 printf("De quelle station souhaitez-vous connaitre les voisins ?\n");
                 id = choisir_station(dico);
                 if (id != -1) {
                     station_voisine(graph, id);
                 } 
                 break;
-            case 3: 
-                printf("Station de départ?\n");
-                int id_depart = choisir_station(dico);
+            case 3:
+                int id_depart = -1;
+                int id_arriver = -1;
 
-                printf("Station d'arriver?\n");
-                int id_arriver = choisir_station(dico);
+                while(id_depart < 0 || id_depart >= graph->V){
+                    printf("Station de départ ?\n");
+                    id_depart = choisir_station(dico);
+                }
 
-                if (id != -1) {
-                    chemin_minimal(dico, graph, id_depart, id_arriver);
-                } 
+                while(id_arriver < 0 || id_arriver >= graph->V || id_depart == id_arriver){
+                    printf("Station d'arrivée ?\n");
+                    id_arriver = choisir_station(dico);
+                }
+
+                chemin_minimal(dico, graph, id_depart, id_arriver); 
                 break;
-            case 4: 
+            case 4:
                  degre_sortant(graph);
                 break;
-            case 0: 
+
+            case 0:
                 quitter = 1;
                 break;
+            
         }
     }
 }

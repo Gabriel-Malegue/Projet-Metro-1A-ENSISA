@@ -14,5 +14,6 @@ Deg_Sta degre_entry(struct Graph* graph);
 
 void selection_sort(Deg_Sta arr, int n);
 void insertion_sort(Deg_Sta arr, int n);
+void quick_sort(Deg_Sta arr, int n);
 
 #endif
