@@ -54,6 +54,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
                 info_station(graph, id);
             }
             break;
+
         case 2:
             printf("De quelle station souhaitez-vous connaitre les voisins ?\n");
             id = choisir_station(dico);
@@ -62,6 +63,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
                 station_voisine(graph, id);
             }
             break;
+
         case 3:
             int id_depart = -1;
             int id_arriver = -1;
@@ -80,6 +82,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
 
             chemin_minimal(graph, id_depart, id_arriver);
             break;
+            
         case 4:
             degre_sortant(graph);
             break;

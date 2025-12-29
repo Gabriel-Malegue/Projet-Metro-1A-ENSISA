@@ -18,9 +18,9 @@ typedef struct{
 // Creation du graphe
 Graph * create_graph(int V);
 void free_graph(Graph * graph);
-struct AdjListNode* new_node(int dest, int weight);
+struct AdjListNode * new_node(int dest, int weight);
 void add_edge(Graph * graph, int src, int dest, int weight);
-Graph * prepare_graph(char *filename, Dictionnary * dico);
+Graph * prepare_graph(char * filename, Dictionnary * dico);
 
 // Fonctions utilite reutilisables
 int is_number(char *s);

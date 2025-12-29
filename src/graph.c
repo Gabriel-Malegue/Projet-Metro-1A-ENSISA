@@ -7,7 +7,7 @@
 
 #define MAX_LINE 200 // Taille maximale pour une entree
 
-Graph *create_graph(int V)
+Graph * create_graph(int V)
 {
     Graph *graph = malloc(sizeof(Graph));
     graph->V = V;
@@ -17,14 +17,14 @@ Graph *create_graph(int V)
     return graph;
 }
 
-void free_graph(Graph *graph)
+void free_graph(Graph * graph)
 {
     if (!graph)
         return;
 
     for (int i = 0; i < graph->V; i++)
     {
-        struct AdjListNode *curr = graph->array[i];
+        struct AdjListNode * curr = graph->array[i];
         while (curr) {
             struct AdjListNode *next = curr->next;
             free(curr);
@@ -44,7 +44,7 @@ void free_graph(Graph *graph)
     free(graph);
 }
 
-struct AdjListNode *new_node(int dest, int weight)
+struct AdjListNode * new_node(int dest, int weight)
 {
     struct AdjListNode *new_node = malloc(sizeof(struct AdjListNode));
     new_node->dest = dest;
@@ -53,7 +53,7 @@ struct AdjListNode *new_node(int dest, int weight)
     return new_node;
 }
 
-void add_edge(Graph *graph, int src, int dest, int weight)
+void add_edge(Graph * graph, int src, int dest, int weight)
 {
     // Rajoute l'arrete pour le premier sommet
     struct AdjListNode *node = new_node(dest, weight);
@@ -84,7 +84,7 @@ void remove_newline(char *s)
 }
 
 // Lis les donnees d'un fichier et cree le graphe correspondant
-Graph *prepare_graph(char *filename, Dictionnary * dico)
+Graph * prepare_graph(char * filename, Dictionnary * dico)
 {
     FILE *f = fopen(filename, "r");
     if (!f)

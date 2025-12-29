@@ -16,7 +16,7 @@ void info_station(Graph * graph, int id)
 
     int degre = 0;
 
-    struct AdjListNode *curr = graph->array[id];
+    struct AdjListNode * curr = graph->array[id];
     while (curr) {
         degre++;
         curr = curr->next;
