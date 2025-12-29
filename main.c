@@ -5,7 +5,27 @@
 #include "dico.h"
 
 
+// Partie pour correctement afficher les accents (UTF-8)
+#include <locale.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+#endif
+
+static void init_utf8(void) {
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    #else
+    setlocale(LC_ALL, "");
+    #endif
+}
+// Fin partie affichage UTF-8
+
+
 int main() {
+    // Initalisation de l'affichage en UTF-8
+    init_utf8();
+
     // Prepare le dictionnaire
     Dictionnary * dico = NULL; 
 

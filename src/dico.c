@@ -4,6 +4,7 @@
 
 #include "dico.h"
 
+// Hashing FNV1-a (32 bit)
 unsigned int hash_function(const char *s, int dict_size)
 {
     unsigned int hash = 2166136261;
@@ -36,7 +37,7 @@ void free_dictionnary(Dictionnary * dict)
         while (curr)
         {
             Entry next = curr->Next;
-            free(curr->key); // strdup'd the key so must free
+            free(curr->key); // strdup donc necessite free
             free(curr);
             curr = next;
         }
