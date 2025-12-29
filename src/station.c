@@ -95,7 +95,17 @@ int dijkstra(Graph * graph, int src, int dst)
 void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
 {
     int distance = dijkstra(graph, id_depart, id_arriver);
-    printf("Distance entre %i et %i : %i \n", id_depart, id_arriver, distance);
+    if (distance == INF) 
+    {
+        printf("Pas de chemins entre %s (%i) et %s (%i) \n", graph->station_names[id_depart],
+                id_depart, graph->station_names[id_arriver], id_arriver);
+    }
+    else 
+    {
+        printf("Distance entre %s (%i) et %s (%i) : %i \n", graph->station_names[id_depart],
+                id_depart, graph->station_names[id_arriver], id_arriver, distance);
+    }
+    
 }
 
 void degre_sortant(Graph * graph)

@@ -51,6 +51,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
             id = choisir_station(dico);
             if (id != -1)
             {
+                printf("\n====INFORMATIONS====\n");
                 info_station(graph, id);
             }
             break;
@@ -60,6 +61,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
             id = choisir_station(dico);
             if (id != -1)
             {
+                printf("\n====STATIONS VOISINES====\n");
                 station_voisine(graph, id);
             }
             break;
@@ -80,10 +82,12 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
                 id_arriver = choisir_station(dico);
             }
 
+            printf("\n====CHEMIN MINIMAL====\n");
             chemin_minimal(graph, id_depart, id_arriver);
             break;
-            
+
         case 4:
+            printf("\n====TRI PAR DEGRE SORTANT====\n");
             degre_sortant(graph);
             break;
 
