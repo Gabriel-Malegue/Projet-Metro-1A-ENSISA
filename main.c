@@ -7,7 +7,7 @@
 
 int main() {
     // Prepare le dictionnaire
-    Dictionnary dico = NULL; 
+    Dictionnary * dico = NULL; 
 
     // Prepare le graph, intialise le dictionnaire
     struct Graph* graph = prepare_graph("data/metro.txt", dico);

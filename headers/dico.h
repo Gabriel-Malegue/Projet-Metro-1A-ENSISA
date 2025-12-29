@@ -9,18 +9,17 @@ struct dictionnary_entry {
 };
 typedef struct dictionnary_entry * Entry;
 
-struct dictionnary {
+typedef struct {
     int size;
     Entry* table; 
-};
-typedef struct dictionnary * Dictionnary;
+} Dictionnary;
 
 unsigned int hash_function(const char * s, int dict_size);
-Dictionnary initialize_dictionnary(int size);
-void free_dictionnary(Dictionnary dict);
-void add_pair(Dictionnary dict, const char* key, int value);
-void remove_pair(Dictionnary dict, const char* key);
-int get_value(Dictionnary dict, const char* key, int* output);
-void print_value(Dictionnary dict, const char* key);
+Dictionnary * initialize_dictionnary(int size);
+void free_dictionnary(Dictionnary * dict);
+void add_pair(Dictionnary * dict, const char* key, int value);
+void remove_pair(Dictionnary * dict, const char* key);
+int get_value(Dictionnary * dict, const char* key, int* output);
+void print_value(Dictionnary * dict, const char* key);
 
 #endif

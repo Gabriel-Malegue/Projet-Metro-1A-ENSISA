@@ -7,9 +7,9 @@
 
 #define MAX_LINE 200 // Taille maximale pour une entree
 
-struct Graph *create_graph(int V)
+Graph *create_graph(int V)
 {
-    struct Graph *graph = malloc(sizeof(struct Graph));
+    Graph *graph = malloc(sizeof(Graph));
     graph->V = V;
     graph->array = malloc(V * sizeof(struct AdjListNode *));
     for (int i = 0; i < V; i++)
@@ -17,7 +17,7 @@ struct Graph *create_graph(int V)
     return graph;
 }
 
-void free_graph(struct Graph *graph)
+void free_graph(Graph *graph)
 {
     if (!graph)
         return;
@@ -53,7 +53,7 @@ struct AdjListNode *new_node(int dest, int weight)
     return new_node;
 }
 
-void add_edge(struct Graph *graph, int src, int dest, int weight)
+void add_edge(Graph *graph, int src, int dest, int weight)
 {
     // Rajoute l'arrete pour le premier sommet
     struct AdjListNode *node = new_node(dest, weight);
@@ -84,7 +84,7 @@ void remove_newline(char *s)
 }
 
 // Lis les donnees d'un fichier et cree le graphe correspondant
-struct Graph *prepare_graph(char *filename, Dictionnary dico)
+Graph *prepare_graph(char *filename, Dictionnary * dico)
 {
     FILE *f = fopen(filename, "r");
     if (!f)
@@ -120,7 +120,7 @@ struct Graph *prepare_graph(char *filename, Dictionnary dico)
     }
 
     dico = initialize_dictionnary(station_count * 2); // 2 fois le nbr de stations pour eviter les collisions
-    struct Graph *graph = create_graph(max_id + 1);
+    Graph *graph = create_graph(max_id + 1);
     graph->station_names = calloc(max_id + 1, sizeof(char *));
 
     rewind(f);

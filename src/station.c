@@ -9,7 +9,7 @@
 
 #define INF 100000
 
-void info_station(struct Graph *graph, int id)
+void info_station(Graph * graph, int id)
 {
     printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
@@ -25,7 +25,7 @@ void info_station(struct Graph *graph, int id)
     printf("Degre sortant : %i \n", degre);
 }
 
-void station_voisine(struct Graph *graph, int id)
+void station_voisine(Graph * graph, int id)
 {
     struct AdjListNode *curr = graph->array[id];
     if (!curr)
@@ -44,9 +44,9 @@ void station_voisine(struct Graph *graph, int id)
     }
 }
 
-int dijkstra(struct Graph *g, int src, int dst)
+int dijkstra(Graph * graph, int src, int dst)
 {
-    int size = g->V;
+    int size = graph->V;
 
     int visited[size];
     int dist[size];
@@ -74,7 +74,7 @@ int dijkstra(struct Graph *g, int src, int dst)
             break;
         visited[u] = 1;
 
-        struct AdjListNode *node = g->array[u];
+        struct AdjListNode *node = graph->array[u];
         while (node) {
             int dest = node->dest;
             if (!visited[dest])
@@ -92,13 +92,13 @@ int dijkstra(struct Graph *g, int src, int dst)
     return dist[dst];
 }
 
-void chemin_minimal(struct Graph *graph, int id_depart, int id_arriver)
+void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
 {
     int distance = dijkstra(graph, id_depart, id_arriver);
     printf("Distance entre %i et %i : %i \n", id_depart, id_arriver, distance);
 }
 
-void degre_sortant(struct Graph *graph)
+void degre_sortant(Graph * graph)
 {
     Deg_Sta deg = degre_entry(graph); // on initialise le tableau des degres
 

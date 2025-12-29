@@ -10,7 +10,7 @@ struct degre_station{
 
 typedef struct degre_station * Deg_Sta;
 
-Deg_Sta degre_entry(struct Graph* graph);
+Deg_Sta degre_entry(Graph * graph);
 
 void selection_sort(Deg_Sta arr, int n);
 void insertion_sort(Deg_Sta arr, int n);

@@ -9,18 +9,18 @@ struct AdjListNode{
     struct AdjListNode* next;
 };
 
-struct Graph{
+typedef struct{
     int V;
     struct AdjListNode** array;
     char** station_names; //pour obtenir un nom de station à partir d'un ID
-};
+} Graph;
 
 // Creation du graphe
-struct Graph* create_graph(int V);
-void free_graph(struct Graph* graph);
+Graph * create_graph(int V);
+void free_graph(Graph * graph);
 struct AdjListNode* new_node(int dest, int weight);
-void add_edge(struct Graph* graph, int src, int dest, int weight);
-struct Graph* prepare_graph(char *filename, Dictionnary dico);
+void add_edge(Graph * graph, int src, int dest, int weight);
+Graph * prepare_graph(char *filename, Dictionnary * dico);
 
 // Fonctions utilite reutilisables
 int is_number(char *s);

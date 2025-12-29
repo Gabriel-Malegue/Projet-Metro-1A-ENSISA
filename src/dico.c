@@ -15,9 +15,9 @@ unsigned int hash_function(const char *s, int dict_size)
     return hash % dict_size;
 }
 
-Dictionnary initialize_dictionnary(int size)
+Dictionnary * initialize_dictionnary(int size)
 {
-    Dictionnary new_dictionnary = malloc(sizeof(struct dictionnary));
+    Dictionnary * new_dictionnary = malloc(sizeof(Dictionnary));
     new_dictionnary->size = size;
     new_dictionnary->table = malloc(size * sizeof(Entry));
     for (int i = 0; i < size; i++)
@@ -26,7 +26,7 @@ Dictionnary initialize_dictionnary(int size)
     return new_dictionnary;
 }
 
-void free_dictionnary(Dictionnary dict)
+void free_dictionnary(Dictionnary * dict)
 {
     if (!dict)
         return;
@@ -47,7 +47,7 @@ void free_dictionnary(Dictionnary dict)
     free(dict);
 }
 
-void add_pair(Dictionnary dict, const char *key, int value)
+void add_pair(Dictionnary * dict, const char *key, int value)
 {
     int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
@@ -68,7 +68,7 @@ void add_pair(Dictionnary dict, const char *key, int value)
     dict->table[slot] = new_entry;
 }
 
-void remove_pair(Dictionnary dict, const char *key)
+void remove_pair(Dictionnary * dict, const char *key)
 {
     int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
@@ -95,7 +95,7 @@ void remove_pair(Dictionnary dict, const char *key)
     printf("Entry does not exist in specified dictionnary\n");
 }
 
-int get_value(Dictionnary dict, const char *key, int *output)
+int get_value(Dictionnary * dict, const char *key, int *output)
 {
     int slot = hash_function(key, dict->size);
     Entry curr = dict->table[slot];
@@ -113,7 +113,7 @@ int get_value(Dictionnary dict, const char *key, int *output)
     return 0;
 }
 
-void print_value(Dictionnary dict, const char *key)
+void print_value(Dictionnary * dict, const char *key)
 {
     int output;
     int value = get_value(dict, key, &output);

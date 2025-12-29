@@ -16,7 +16,7 @@ Deg_Sta degre_entry(struct Graph *graph)
         struct AdjListNode *curr = graph->array[i];
 
         while (curr) { 
-            // on recup en fonction du degré sortant
+            // On recup en fonction du degré sortant
             degre++;
             curr = curr->next;
         }
