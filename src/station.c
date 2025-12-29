@@ -21,17 +21,7 @@ void info_station(Graph * graph, int id)
         degre++;
         curr = curr->next;
     }
-    printf("Degre sortant : %i \n\n", degre);
-
-    // Distance aux voisins
-    int * dist_voisins = dijkstra_voisins(graph, id);
-    for (int voisin = 0; voisin < graph->V; voisin++) {
-        if (dist_voisins[voisin] != -1 && voisin != id)
-        {
-            printf("Distance vers %s : %i\n", graph->station_names[voisin], dist_voisins[voisin]);
-        }
-    }
-    free(dist_voisins);
+    printf("Degre sortant : %i \n", degre);
 }
 
 void station_voisine(Graph * graph, int id)
@@ -55,16 +45,27 @@ void station_voisine(Graph * graph, int id)
 
 void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
 {
-    int distance = dijkstra(graph, id_depart, id_arriver);
-    if (distance == INF) 
-    {
-        printf("Pas de chemins entre %s (%i) et %s (%i) \n", graph->station_names[id_depart],
-                id_depart, graph->station_names[id_arriver], id_arriver);
-    }
-    else 
+    int taille_chemin;
+    int distance;
+    int* chemin = dijkstra(graph, id_depart, id_arriver, &distance, &taille_chemin);
+
+    if (chemin && distance != INF) 
     {
         printf("Distance entre %s (%i) et %s (%i) : %i \n", graph->station_names[id_depart],
                 id_depart, graph->station_names[id_arriver], id_arriver, distance);
+        printf("Chemin a emprunter: \n ~ ");
+
+        for (int i = 0; i < taille_chemin - 1; i++) {
+            int noeud = chemin[i];
+            printf("%s (%i) -> ", graph->station_names[noeud], noeud);
+        }
+        printf("%s (%i) \n", graph->station_names[id_arriver], id_arriver);
+        free(chemin);
+    }
+    else 
+    {
+        printf("Pas de chemins entre %s (%i) et %s (%i) \n", graph->station_names[id_depart],
+                id_depart, graph->station_names[id_arriver], id_arriver);
     }
     
 }

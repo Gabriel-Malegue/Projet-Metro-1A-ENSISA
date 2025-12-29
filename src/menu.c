@@ -88,11 +88,13 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
 
         case 4:
             printf("\n====TRI PAR DEGRE SORTANT====\n");
+
             char ordre[4];
             printf("Ordre du tri desire (asc pour ascendant dsc sinon): ");
             scanf(" %s", ordre);
             printf("\n");
             int ascendant = (strcmp(ordre, "asc") == 0) ? 1 : 0;
+            
             degre_sortant(graph, ascendant);
             break;
 

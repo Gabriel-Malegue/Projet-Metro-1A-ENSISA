@@ -3,16 +3,18 @@
 #include "dijkstra.h"
 
 // Retourne le chemin minimal entre deux points
-int dijkstra(Graph * graph, int src, int dst)
+int* dijkstra(Graph * graph, int src, int dst, int* res, int* taille_chemin)
 {
     int size = graph->V;
 
     int visited[size];
     int dist[size];
+    int parent[size];
 
     for (int i = 0; i < size; i++) {
         visited[i] = 0;
         dist[i] = INF;
+        parent[i] = -1;
     }
 
     dist[src] = 0;
@@ -41,6 +43,7 @@ int dijkstra(Graph * graph, int src, int dst)
                 if (u_val + node->weight < dist[dest])
                 {
                     dist[dest] = u_val + node->weight;
+                    parent[dest] = u;
                 }
             }
 
@@ -48,7 +51,30 @@ int dijkstra(Graph * graph, int src, int dst)
         }
     }
 
-    return dist[dst];
+    *res = dist[dst];
+
+    if (dist[dst] == INF) {
+        *taille_chemin = 0;
+        return NULL;
+    }
+
+    // Creer chemin (a l'envers)
+    *taille_chemin = 0;
+    int tmp[size];
+    int noeud = dst;
+
+    while (noeud != -1) {
+        tmp[(*taille_chemin)++] = noeud;
+        noeud = parent[noeud];
+    }
+
+    // Remettre chemin a l'endroit
+    int* chemin = malloc(*taille_chemin * sizeof(int));
+    for (int i = 0; i < *taille_chemin; i++) {
+        chemin[i] = tmp[*taille_chemin - 1 - i];
+    }
+
+    return chemin;
 }
 
 
