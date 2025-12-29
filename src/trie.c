@@ -5,6 +5,7 @@
 #include "trie.h"
 #include "graph.h"
 
+
 Deg_Sta degre_entry(struct Graph* graph){
     Deg_Sta tableau_deg = malloc(graph->V * sizeof(struct degre_station));
 
@@ -24,7 +25,8 @@ Deg_Sta degre_entry(struct Graph* graph){
     return tableau_deg;
 }
 
-//Trie par selection
+
+// Trie par selection
 void selection_sort(Deg_Sta arr, int n){
     int comparaison = 0;
     int swap = 0;
@@ -48,7 +50,8 @@ void selection_sort(Deg_Sta arr, int n){
     printf("Swaps : %d\n", swap);
 }
 
-//Trie par insertion
+
+// Trie par insertion
 void insertion_sort(Deg_Sta arr, int n){
     int comparaison = 0;
     int swap = 0;
@@ -71,7 +74,8 @@ void insertion_sort(Deg_Sta arr, int n){
     printf("Swaps : %d\n", swap);
 }
 
-//Trie rapide
+
+// Trie rapide
 int comp_q;
 int swap_q;
 
