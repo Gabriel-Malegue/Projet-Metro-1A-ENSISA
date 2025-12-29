@@ -14,7 +14,7 @@ typedef struct {
     Entry* table; 
 } Dictionnary;
 
-unsigned int hash_function(const char * s, int dict_size);
+unsigned int hash_function(const char* s, int dict_size);
 Dictionnary * initialize_dictionnary(int size);
 void free_dictionnary(Dictionnary * dict);
 void add_pair(Dictionnary * dict, const char* key, int value);
