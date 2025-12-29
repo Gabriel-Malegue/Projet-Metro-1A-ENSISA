@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "graph.h"
 #include "menu.h"
@@ -8,19 +9,18 @@
 
 int choisir_station(Dictionnary * dico)
 {
-    char station[50];
-    scanf(" %[^\n]", station);
+    char station[64];
+    scanf(" %63[^\n]", station);
     int id;
 
-    if (is_number(station) == 1) {
-        id = atoi(station);
-    } else {
-        if (!get_value(dico, station, &id))
-        {
-            printf("Station %s non trouvée !\n", station);
-            return -1;
-        }
+    if (is_number(station))
+        return atoi(station);
+    
+    if (!get_value(dico, station, &id)) {
+        printf("Station %s non trouvée !\n", station);
+        return -1;
     }
+
     return id;
 }
 
@@ -88,7 +88,12 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
 
         case 4:
             printf("\n====TRI PAR DEGRE SORTANT====\n");
-            degre_sortant(graph);
+            char ordre[4];
+            printf("Ordre du tri desire (asc pour ascendant dsc sinon): ");
+            scanf(" %s", ordre);
+            printf("\n");
+            int ascendant = (strcmp(ordre, "asc") == 0) ? 1 : 0;
+            degre_sortant(graph, ascendant);
             break;
 
         case 0:

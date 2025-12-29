@@ -10,18 +10,28 @@
 
 void info_station(Graph * graph, int id)
 {
+    // ID et Nom
     printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
 
+    // Degre sortant
     int degre = 0;
-
     struct AdjListNode * curr = graph->array[id];
     while (curr) {
         degre++;
         curr = curr->next;
     }
+    printf("Degre sortant : %i \n\n", degre);
 
-    printf("Degre sortant : %i \n", degre);
+    // Distance aux voisins
+    int * dist_voisins = dijkstra_voisins(graph, id);
+    for (int voisin = 0; voisin < graph->V; voisin++) {
+        if (dist_voisins[voisin] != -1 && voisin != id)
+        {
+            printf("Distance vers %s : %i\n", graph->station_names[voisin], dist_voisins[voisin]);
+        }
+    }
+    free(dist_voisins);
 }
 
 void station_voisine(Graph * graph, int id)
@@ -33,7 +43,7 @@ void station_voisine(Graph * graph, int id)
         return;
     }
 
-    printf("Station voisine de  %i - %s :\n", id, graph->station_names[id]);
+    printf("Stations voisines de  %i - %s :\n\n", id, graph->station_names[id]);
     while (curr) {
         int voisin_id = curr->dest;
         int temps = curr->weight;
@@ -59,7 +69,7 @@ void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
     
 }
 
-void degre_sortant(Graph * graph)
+void degre_sortant(Graph * graph, int asc)
 {
     Deg_Sta deg = degre_entry(graph); // on initialise le tableau des degres
 
@@ -81,10 +91,23 @@ void degre_sortant(Graph * graph)
     quick_sort(deg_quick, graph->V);
     printf("\n");
 
-    for (int i = graph->V - 1; i >= 0; i--) {
-        printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
-               graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+    if (asc) 
+    {
+        printf("Par ordre ascendant: \n");
+        for (int i = 0; i < graph->V; i++) {
+                printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
+                    graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+        }
+    } 
+    else 
+    {
+        printf("Par ordre descendant: \n");
+        for (int i = graph->V - 1; i >= 0; i--) {
+                printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
+                    graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+        }
     }
+    
 
     free(deg);
 }

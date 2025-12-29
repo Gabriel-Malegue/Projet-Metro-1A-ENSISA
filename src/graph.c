@@ -84,7 +84,7 @@ void remove_newline(char *s)
 }
 
 // Lis les donnees d'un fichier et cree le graphe correspondant
-Graph * prepare_graph(char * filename, Dictionnary * dico)
+Graph * prepare_graph(char * filename, Dictionnary ** dico)
 {
     FILE *f = fopen(filename, "r");
     if (!f)
@@ -119,7 +119,7 @@ Graph * prepare_graph(char * filename, Dictionnary * dico)
         station_count++;
     }
 
-    dico = initialize_dictionnary(station_count * 2); // 2 fois le nbr de stations pour eviter les collisions
+    *dico = initialize_dictionnary(station_count * 2); // 2 fois le nbr de stations pour eviter les collisions
     Graph *graph = create_graph(max_id + 1);
     graph->station_names = calloc(max_id + 1, sizeof(char *));
 
@@ -152,13 +152,13 @@ Graph * prepare_graph(char * filename, Dictionnary * dico)
             continue;
         }
 
-        if (get_value(dico, tok, NULL))
+        if (get_value(*dico, tok, NULL))
         {
             fprintf(stderr, "Probleme: La station %s existe deja\n", tok);
             continue;
         }
 
-        add_pair(dico, tok, id);
+        add_pair(*dico, tok, id);
         graph->station_names[id] = strdup(tok);
     }
 
