@@ -4,7 +4,7 @@
 #include "graph.h"
 #include "menu.h"
 #include "dico.h"
-#include "fonction_station.h"
+#include "station.h"
 
 int choisir_station(Dictionnary dico){
     char station[50];
