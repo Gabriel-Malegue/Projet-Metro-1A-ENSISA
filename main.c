@@ -4,8 +4,6 @@
 #include "menu.h"
 #include "dico.h"
 
-#define DICT_SIZE 512 // Taille maximale pour le dictionnaire
-
 
 int main() {
     // Prepare le dictionnaire
