@@ -5,7 +5,7 @@
 #include "trie.h"
 #include "graph.h"
 
-Deg_Sta degre_entry(struct Graph *graph)
+Deg_Sta degre_entry(Graph *graph)
 {
     Deg_Sta tableau_deg = malloc(graph->V * sizeof(struct degre_station));
 
