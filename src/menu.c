@@ -94,7 +94,7 @@ void afficher_menu(Dictionnary *dico, Graph *graph)
             char ordre[16];
             printf("Ordre du tri desire (asc pour ascendant dsc sinon): ");
 
-            // vider stdin avant fgets car scanf avant
+            // vider stdin avant fgets sinon ca marche pas
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
 
