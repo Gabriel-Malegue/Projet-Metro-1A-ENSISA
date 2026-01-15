@@ -194,7 +194,7 @@ Graph * prepare_graph(char * filename, Dictionnary ** dico)
         tok = strtok(NULL, "\n");
         if (!tok || !is_number(tok))
         {
-            fprintf(stderr, "Probleme chemin %i a %i: pas de duree de trajet\n", src, dest);
+            fprintf(stderr, "Probleme chemin %i a %i: durée de trajet invalide\n", src, dest);
             continue;
         }
         int weight = atoi(tok);
