@@ -14,12 +14,12 @@
 STATION;0;La Défense Grande Arche
 STATION;1;Esplanade Ouest
 STATION;2;Neuilly Centre
-STATION;3;Sablons Sud
+STATION;3;George V Avenue
 STATION;4;Porte Maillot Est
 STATION;5;Argentine Nord
 STATION;6;Charles de Gaulle Étoile
-STATION;7;George V Avenue
-STATION;8;Franklin Roosevelt
+STATION;7;Hoche
+STATION;8;Nationale
 STATION;9;Champs-Élysées Clemenceau
 
 EDGE;12;13;2
@@ -38,23 +38,23 @@ EDGE;10;16;-2
 
 Jenny will you stay? Tarry me with pray
 
-STATION;10;Concorde Centrale
+STATION;10;Anvers
 STATION;11;Tuileries Jardin
 STATION;12;Palais Royal Louvre
-STATION;13;Louvre Rivoli
-STATION;14;Châtelet Centre
-STATION;15;Hôtel de Ville Nord
-STATION;16;Saint-Paul Marais
-STATION;17;Bastille Sud
-STATION;18;Gare de Lyon Hall
-STATION;19;Reuilly Diderot
-STATION;24;Château de Vincennes
+STATION;13;Edgar Quinet
+STATION;14;Wazemmes
+STATION;15;Bol d'air
+STATION;16;Eurotéléport
+STATION;17;Rihour
+STATION;18;Aubervilliers
+STATION;19;Notre-Dame-des-Champs
+STATION;24;Ourcq
 STATION;20;Nation Place
 STATION;21;Porte de Vincennes Ouest
 STATION;22;Saint-Mandé Sud
 STATION;23;Bérault Centre
 STATION;23;Bérault Nord
-STATION;33;Illberg
+STATION;33;Jussieu
 
 CESAR, CRASSUS ET LE TRIUMVIRAT ENTIER NE PUT RIEN CONTRE LA GAULLE
 GALLIA VICTOR AETERNUS EST
