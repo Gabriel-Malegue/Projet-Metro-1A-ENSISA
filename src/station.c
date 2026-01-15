@@ -51,7 +51,7 @@ void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
 
     if (chemin && distance != INF) 
     {
-        printf("Distance entre %s (%i) et %s (%i) : %i \n", graph->station_names[id_depart],
+        printf("Distance entre %s (%i) et %s (%i) : %i minutes \n", graph->station_names[id_depart],
                 id_depart, graph->station_names[id_arriver], id_arriver, distance);
         printf("Chemin a emprunter: \n ~ ");
 

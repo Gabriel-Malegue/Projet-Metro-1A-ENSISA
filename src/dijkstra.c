@@ -1,5 +1,4 @@
 #include <stdlib.h>
-
 #include "dijkstra.h"
 
 // Retourne le chemin minimal entre deux points
