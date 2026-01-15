@@ -101,7 +101,7 @@ void afficher_menu(Dictionnary *dico, Graph *graph)
             break;
 
         case 0:
-            printf("Merci pour votre passage sur notre application made by Glglmch & Greehon\n");
+            printf("Merci pour votre passage sur notre application made by Glgmch & Greehon\n");
             quitter = 1;
             break;
 
