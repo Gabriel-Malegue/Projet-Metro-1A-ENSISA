@@ -26,7 +26,7 @@ int choisir_station(Dictionnary * dico)
 
 void afficher_menu(Dictionnary * dico, Graph * graph)
 {
-    int nombre;
+    int nombre = 0;
     int quitter = 0;
 
     while (quitter != 1)
@@ -99,7 +99,12 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
             break;
 
         case 0:
+            printf("Merci pour votre passage sur notre application made by Glglmch & Greehon\n");
             quitter = 1;
+            break;
+        
+        default :
+            printf("Selection invalide ! \nChoisir un nombre entre 0 et 4. \n");
             break;
         }
     }

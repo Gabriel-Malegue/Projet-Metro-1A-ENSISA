@@ -12,6 +12,7 @@ Graph * create_graph(int V)
     Graph *graph = malloc(sizeof(Graph));
     graph->V = V;
     graph->array = malloc(V * sizeof(struct AdjListNode *));
+    graph->station_names = calloc(V, sizeof(char *));
     for (int i = 0; i < V; i++)
         graph->array[i] = NULL;
     return graph;
@@ -37,10 +38,10 @@ void free_graph(Graph * graph)
     graph->array = NULL;
 
     for (int i = 0; i < graph->V; i++) // on libère le tableau des noms de stations
-        free(graph->station_names[i]);
+        if (graph->station_names[i])
+            free(graph->station_names[i]);
 
     free(graph->station_names);
-
     free(graph);
 }
 
@@ -121,7 +122,6 @@ Graph * prepare_graph(char * filename, Dictionnary ** dico)
 
     *dico = initialize_dictionnary(station_count * 2); // 2 fois le nbr de stations pour eviter les collisions
     Graph *graph = create_graph(max_id + 1);
-    graph->station_names = calloc(max_id + 1, sizeof(char *));
 
     rewind(f);
 
@@ -156,6 +156,11 @@ Graph * prepare_graph(char * filename, Dictionnary ** dico)
         {
             fprintf(stderr, "Probleme: La station %s existe deja\n", tok);
             continue;
+        }
+
+        if (graph->station_names[id] != NULL)
+        {
+            free(graph->station_names[id]);
         }
 
         add_pair(*dico, tok, id);

@@ -109,6 +109,8 @@ void degre_sortant(Graph * graph, int asc)
         }
     }
     
-
+    free(deg_selection);
+    free(deg_insertion);
+    free(deg_quick);
     free(deg);
 }
