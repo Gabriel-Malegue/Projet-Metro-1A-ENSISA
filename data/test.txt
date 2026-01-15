@@ -1,0 +1,92 @@
+# Réseau de métro simplifié - Version modifiée
+# Format :
+# STATION;id;nom
+# EDGE;id_depart;id_arrivee;temps_en_minutes
+
+STATION;0;La Défense Grande Arche
+STATION;1;Esplanade Ouest
+STATION;2;Neuilly Centre
+STATION;3;Sablons Sud
+STATION;4;Porte Maillot Est
+STATION;5;Argentine Nord
+STATION;6;Charles de Gaulle Étoile
+STATION;7;George V Avenue
+STATION;8;Franklin Roosevelt
+STATION;9;Champs-Élysées Clemenceau
+
+EDGE;12;13;2
+EDGE;13;12;2
+EDGE;13;14;3
+EDGE;14;13;3
+EDGE;14;15;2
+EDGE;15;14;2
+EDGE;15;16;3
+EDGE;16;15;3
+EDGE;16;17;2
+EDGE;17;16;2
+EDGER;18;16;2
+
+STATION;10;Concorde Centrale
+STATION;11;Tuileries Jardin
+STATION;12;Palais Royal Louvre
+STATION;13;Louvre Rivoli
+STATION;14;Châtelet Centre
+STATION;15;Hôtel de Ville Nord
+STATION;16;Saint-Paul Marais
+STATION;17;Bastille Sud
+STATION;18;Gare de Lyon Hall
+STATION;19;Reuilly Diderot
+STATION;20;Nation Place
+STATION;21;Porte de Vincennes Ouest
+STATION;22;Saint-Mandé Sud
+STATION;23;Bérault Centre
+STATION;24;Château de Vincennes
+
+EDGE;0;1;5
+EDGE;1;0;5
+EDGE;1;2;4
+EDGE;2;1;4
+EDGE;2;3;3
+EDGE;3;2;3
+EDGE;3;4;3
+EDGE;4;3;3
+EDGE;4;5;2
+EDGE;5;4;2
+EDGE;5;6;4
+EDGE;6;5;4
+EDGE;6;7;2
+EDGE;7;6;2
+EDGE;7;8;3
+EDGE;8;7;3
+EDGE;8;9;2
+EDGE;9;8;2
+EDGE;9;10;3
+EDGE;10;9;3
+EDGE;10;11;2
+EDGE;11;10;2
+EDGE;11;12;3
+EDGE;12;11;3
+EDGE;12;13;2
+EDGE;13;12;2
+EDGE;13;14;3
+EDGE;14;13;3
+EDGE;14;15;2
+EDGE;15;14;2
+EDGE;15;16;3
+EDGE;16;15;3
+EDGE;16;17;2
+EDGE;17;16;2
+EDGE;17;18;4
+EDGE;18;17;4
+EDGE;18;19;3
+EDGE;19;18;3
+EDGE;19;20;4
+EDGE;20;19;4
+EDGE;20;21;3
+EDGE;21;20;3
+EDGE;21;22;2
+EDGE;22;21;2
+EDGE;22;23;3
+EDGE;23;22;3
+EDGE;23;24;4
+EDGE;24;23;4

@@ -30,7 +30,7 @@ int main() {
     Dictionnary * dico = NULL; 
 
     // Prepare le graph, intialise le dictionnaire
-    Graph * graph = prepare_graph("data/metro.txt", &dico);
+    Graph * graph = prepare_graph("data/test.txt", &dico);
     if (!graph) {
         fprintf(stderr, "Le graphe n'a pas pu etre initialiser\n");
         return 1;

@@ -22,6 +22,8 @@ Il s’agit d’un projet académique réalisé en première année à l’ENSIS
 - Compilateur : **gcc**
 - Make
 
+
 ## Compilation
-Juste un *make* suffit, ou sinon:  
-gcc -Wall -Wextra -Iheaders main.c src/graph.c src/menu.c src/dico.c src/station.c src/trie.c src/dijkstra.c -o bin/metro.exe
+- make (version finale)
+- make debug (version avec debug) 
+- make valgrind (make debug et execute valgrind qui detecte les fuites de memoire, merci Guillaume) 
