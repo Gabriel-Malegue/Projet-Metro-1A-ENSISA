@@ -3,6 +3,14 @@
 # STATION;id;nom
 # EDGE;id_depart;id_arrivee;temps_en_minutes
 
+# Erreures dans le test:
+# EDGE;10;16;-2 : poids negatif
+# Phrases random : ne commencent pas par STATION ou EDGE
+# EDGE;-15;16;3 (Et autre): Station inexistante
+# STATION;51;Illberg : Station ID non contigue avec les autres
+# STATIONS et EDGE n'ont pas d'ordre specifique
+# STATION;23;Bérault Centre : Meme id deux fois
+
 STATION;0;La Défense Grande Arche
 STATION;1;Esplanade Ouest
 STATION;2;Neuilly Centre
@@ -21,10 +29,14 @@ EDGE;14;13;3
 EDGE;14;15;2
 EDGE;15;14;2
 EDGE;15;16;3
+EDGE;-15;16;3
 EDGE;16;15;3
 EDGE;16;17;2
 EDGE;17;16;2
 EDGER;18;16;2
+EDGE;10;16;-2
+
+Jenny will you stay? Tarry me with pray
 
 STATION;10;Concorde Centrale
 STATION;11;Tuileries Jardin
@@ -36,11 +48,16 @@ STATION;16;Saint-Paul Marais
 STATION;17;Bastille Sud
 STATION;18;Gare de Lyon Hall
 STATION;19;Reuilly Diderot
+STATION;24;Château de Vincennes
 STATION;20;Nation Place
 STATION;21;Porte de Vincennes Ouest
 STATION;22;Saint-Mandé Sud
 STATION;23;Bérault Centre
-STATION;24;Château de Vincennes
+STATION;23;Bérault Nord
+STATION;33;Illberg
+
+CESAR, CRASSUS ET LE TRIUMVIRAT ENTIER NE PUT RIEN CONTRE LA GAULLE
+GALLIA VICTOR AETERNUS EST
 
 EDGE;0;1;5
 EDGE;1;0;5
@@ -58,6 +75,10 @@ EDGE;6;7;2
 EDGE;7;6;2
 EDGE;7;8;3
 EDGE;8;7;3
+
+EDG;8;99;0
+EDGE;0;0;0
+
 EDGE;8;9;2
 EDGE;9;8;2
 EDGE;9;10;3
@@ -90,3 +111,8 @@ EDGE;22;23;3
 EDGE;23;22;3
 EDGE;23;24;4
 EDGE;24;23;4
+
+EDGE;24;2026;8
+EDGE;33;0;2
+EDGE;31;0;2
+EDGE;31;32;3

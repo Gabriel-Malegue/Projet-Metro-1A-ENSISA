@@ -204,9 +204,10 @@ Graph *prepare_graph(char *filename, Dictionnary **dico)
         }
         int weight = atoi(tok);
 
-        if (src < 0 || src > max_id || dest < 0 || dest > max_id)
+        if ((src < 0 || src > max_id || dest < 0 || dest > max_id) ||
+            (!graph->station_names[src] || !graph->station_names[dest]))
         {
-            fprintf(stderr, "Probleme chemin: station inexistante (%d ou %d)\n", src, dest);
+            fprintf(stderr, "Probleme chemin: station inexistante (%d et/ou %d)\n", src, dest);
             continue;
         }
 
@@ -217,7 +218,7 @@ Graph *prepare_graph(char *filename, Dictionnary **dico)
 
     for (int i = 0; i <= max_id; i++)
     {
-        if (graph->array[i] == NULL)
+        if (graph->array[i] == NULL && graph->station_names[i])
         {
             fprintf(stderr, "Probleme: la station %i n'a aucune arrete\n", i);
         }

@@ -93,10 +93,15 @@ void afficher_menu(Dictionnary *dico, Graph *graph)
 
             char ordre[4];
             printf("Ordre du tri desire (asc pour ascendant dsc sinon): ");
-            scanf(" %s", ordre);
-            printf("\n");
-            int ascendant = (strcmp(ordre, "asc") == 0) ? 1 : 0;
+            printf("Ordre du tri desire (asc pour ascendant, dsc sinon): ");
 
+            if (fgets(ordre, sizeof(ordre), stdin)) {
+                ordre[strcspn(ordre, "\n")] = '\0';
+            }
+
+            int ascendant = (strcmp(ordre, "asc") == 0) ? 1 : 0;
+            
+            printf("\n");
             degre_sortant(graph, ascendant);
             break;
 

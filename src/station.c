@@ -10,6 +10,12 @@
 
 void info_station(Graph *graph, int id)
 {
+    if (id > graph->V || !graph->station_names[id])
+    {
+        printf("Station inexistante\n");
+        return;
+    }
+
     // ID et Nom
     printf("Nom : %s \n", graph->station_names[id]);
     printf("ID : %i \n", id);
@@ -99,8 +105,10 @@ void degre_sortant(Graph *graph, int asc)
         printf("Par ordre ascendant: \n");
         for (int i = 0; i < graph->V; i++)
         {
+            // Check si la station existe (si stations non contigues) et print
+            if (!graph->station_names[deg_quick[i].id]) continue;
             printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
-                   graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+                graph->station_names[deg_quick[i].id], deg_quick[i].degre);
         }
     }
     else
@@ -108,8 +116,10 @@ void degre_sortant(Graph *graph, int asc)
         printf("Par ordre descendant: \n");
         for (int i = graph->V - 1; i >= 0; i--)
         {
+            // Check si la station existe (si stations non contigues) et print
+            if (!graph->station_names[deg_quick[i].id]) continue;
             printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
-                   graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+                graph->station_names[deg_quick[i].id], deg_quick[i].degre);
         }
     }
 
