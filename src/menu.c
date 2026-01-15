@@ -49,7 +49,7 @@ void afficher_menu(Dictionnary *dico, Graph *graph)
         switch (nombre)
         {
         case 1:
-            printf("Sur quelle station souhaitez-vous des information ?\n");
+            printf("Station dont vous souhaitez connaitre les informations: ");
             id = choisir_station(dico);
             if (id != -1)
             {
@@ -59,7 +59,7 @@ void afficher_menu(Dictionnary *dico, Graph *graph)
             break;
 
         case 2:
-            printf("De quelle station souhaitez-vous connaitre les voisins ?\n");
+            printf("Station dont vous souhaitez connaitre les voisins: ");
             id = choisir_station(dico);
             if (id != -1)
             {
