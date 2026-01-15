@@ -8,7 +8,7 @@
 #include "trie.h"
 #include "dijkstra.h"
 
-void info_station(Graph * graph, int id)
+void info_station(Graph *graph, int id)
 {
     // ID et Nom
     printf("Nom : %s \n", graph->station_names[id]);
@@ -16,15 +16,16 @@ void info_station(Graph * graph, int id)
 
     // Degre sortant
     int degre = 0;
-    struct AdjListNode * curr = graph->array[id];
-    while (curr) {
+    struct AdjListNode *curr = graph->array[id];
+    while (curr)
+    {
         degre++;
         curr = curr->next;
     }
     printf("Degre sortant : %i \n", degre);
 }
 
-void station_voisine(Graph * graph, int id)
+void station_voisine(Graph *graph, int id)
 {
     struct AdjListNode *curr = graph->array[id];
     if (!curr)
@@ -34,7 +35,8 @@ void station_voisine(Graph * graph, int id)
     }
 
     printf("Stations voisines de  %i - %s :\n\n", id, graph->station_names[id]);
-    while (curr) {
+    while (curr)
+    {
         int voisin_id = curr->dest;
         int temps = curr->weight;
         char *nom_voisin = graph->station_names[voisin_id];
@@ -43,34 +45,34 @@ void station_voisine(Graph * graph, int id)
     }
 }
 
-void chemin_minimal(Graph * graph, int id_depart, int id_arriver)
+void chemin_minimal(Graph *graph, int id_depart, int id_arriver)
 {
     int taille_chemin;
     int distance;
-    int* chemin = dijkstra(graph, id_depart, id_arriver, &distance, &taille_chemin);
+    int *chemin = dijkstra(graph, id_depart, id_arriver, &distance, &taille_chemin);
 
-    if (chemin && distance != INF) 
+    if (chemin && distance != INF)
     {
         printf("Distance entre %s (%i) et %s (%i) : %i minutes \n", graph->station_names[id_depart],
-                id_depart, graph->station_names[id_arriver], id_arriver, distance);
+               id_depart, graph->station_names[id_arriver], id_arriver, distance);
         printf("Chemin a emprunter: \n ~ ");
 
-        for (int i = 0; i < taille_chemin - 1; i++) {
+        for (int i = 0; i < taille_chemin - 1; i++)
+        {
             int noeud = chemin[i];
             printf("%s (%i) -> ", graph->station_names[noeud], noeud);
         }
         printf("%s (%i) \n", graph->station_names[id_arriver], id_arriver);
         free(chemin);
     }
-    else 
+    else
     {
         printf("Pas de chemins entre %s (%i) et %s (%i) \n", graph->station_names[id_depart],
-                id_depart, graph->station_names[id_arriver], id_arriver);
+               id_depart, graph->station_names[id_arriver], id_arriver);
     }
-    
 }
 
-void degre_sortant(Graph * graph, int asc)
+void degre_sortant(Graph *graph, int asc)
 {
     Deg_Sta deg = degre_entry(graph); // on initialise le tableau des degres
 
@@ -92,23 +94,25 @@ void degre_sortant(Graph * graph, int asc)
     quick_sort(deg_quick, graph->V);
     printf("\n");
 
-    if (asc) 
+    if (asc)
     {
         printf("Par ordre ascendant: \n");
-        for (int i = 0; i < graph->V; i++) {
-                printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
-                    graph->station_names[deg_quick[i].id], deg_quick[i].degre);
-        }
-    } 
-    else 
-    {
-        printf("Par ordre descendant: \n");
-        for (int i = graph->V - 1; i >= 0; i--) {
-                printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
-                    graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+        for (int i = 0; i < graph->V; i++)
+        {
+            printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
+                   graph->station_names[deg_quick[i].id], deg_quick[i].degre);
         }
     }
-    
+    else
+    {
+        printf("Par ordre descendant: \n");
+        for (int i = graph->V - 1; i >= 0; i--)
+        {
+            printf("Station %i - %s -> Degre Sortant : %i \n", deg_quick[i].id,
+                   graph->station_names[deg_quick[i].id], deg_quick[i].degre);
+        }
+    }
+
     free(deg_selection);
     free(deg_insertion);
     free(deg_quick);

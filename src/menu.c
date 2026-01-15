@@ -7,7 +7,7 @@
 #include "dico.h"
 #include "station.h"
 
-int choisir_station(Dictionnary * dico)
+int choisir_station(Dictionnary *dico)
 {
     char station[64];
     scanf(" %63[^\n]", station);
@@ -15,8 +15,9 @@ int choisir_station(Dictionnary * dico)
 
     if (is_number(station))
         return atoi(station);
-    
-    if (!get_value(dico, station, &id)) {
+
+    if (!get_value(dico, station, &id))
+    {
         printf("Station %s non trouvée !\n", station);
         return -1;
     }
@@ -24,7 +25,7 @@ int choisir_station(Dictionnary * dico)
     return id;
 }
 
-void afficher_menu(Dictionnary * dico, Graph * graph)
+void afficher_menu(Dictionnary *dico, Graph *graph)
 {
     int nombre = 0;
     int quitter = 0;
@@ -43,9 +44,10 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
         {
             printf("Entree invalide !\n");
         }
-        
+
         int id = -1;
-        switch (nombre) {
+        switch (nombre)
+        {
         case 1:
             printf("Sur quelle station souhaitez-vous des information ?\n");
             id = choisir_station(dico);
@@ -94,7 +96,7 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
             scanf(" %s", ordre);
             printf("\n");
             int ascendant = (strcmp(ordre, "asc") == 0) ? 1 : 0;
-            
+
             degre_sortant(graph, ascendant);
             break;
 
@@ -102,8 +104,8 @@ void afficher_menu(Dictionnary * dico, Graph * graph)
             printf("Merci pour votre passage sur notre application made by Glglmch & Greehon\n");
             quitter = 1;
             break;
-        
-        default :
+
+        default:
             printf("Selection invalide ! \nChoisir un nombre entre 0 et 4. \n");
             break;
         }

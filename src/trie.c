@@ -9,13 +9,15 @@ Deg_Sta degre_entry(Graph *graph)
 {
     Deg_Sta tableau_deg = malloc(graph->V * sizeof(struct degre_station));
 
-    for (int i = 0; i < graph->V; i++) {
+    for (int i = 0; i < graph->V; i++)
+    {
         tableau_deg[i].id = i;
 
         int degre = 0;
         struct AdjListNode *curr = graph->array[i];
 
-        while (curr) { 
+        while (curr)
+        {
             // On recup en fonction du degré sortant
             degre++;
             curr = curr->next;
@@ -32,10 +34,12 @@ void selection_sort(Deg_Sta arr, int n)
     int comparaison = 0;
     int swap = 0;
 
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < n - 1; i++)
+    {
         int min = i;
 
-        for (int j = i + 1; j < n; j++) {
+        for (int j = i + 1; j < n; j++)
+        {
             if (arr[j].degre < arr[min].degre)
                 min = j;
             comparaison++;
@@ -56,7 +60,8 @@ void insertion_sort(Deg_Sta arr, int n)
     int comparaison = 0;
     int swap = 0;
 
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < n; i++)
+    {
         struct degre_station key = arr[i];
         int j = i - 1;
 
@@ -83,7 +88,8 @@ int partition(Deg_Sta arr, int l, int r)
 {
     int p = arr[r].degre;
     int i = l - 1;
-    for (int j = l; j < r; j++) {
+    for (int j = l; j < r; j++)
+    {
         if (arr[j].degre < p)
         {
             i++;
