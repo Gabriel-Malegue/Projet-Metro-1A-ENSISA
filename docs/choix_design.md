@@ -8,7 +8,7 @@ On decrira notre approche a l'implementation module par module, *sans suivre d'o
 
 Il s'agit d'un fichier recuperer a un ancien projet, auquel on a readapter la mise en page et les commentaires (originalement en anglais). Les fichiers decrivent le code pour un dictionnaire qui utilise un hashing FNV1-a avec les coefficients de la version 32 bits.  
 
-Les coefficients 32 bits etaient suffisant pour la quantitee de donnees que l'on traite et permet de gagner en calcul par rapport a la version 64 bits. 
+Les coefficients 32 bits etaient suffisant pour la quantite de donnees que l'on traite et permet de gagner en calcul par rapport a la version 64 bits. 
 
 ## DIJKSTRA
 
