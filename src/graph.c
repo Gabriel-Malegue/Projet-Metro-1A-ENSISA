@@ -135,7 +135,7 @@ Graph *prepare_graph(char *filename, Dictionnary **dico)
         if (line[0] == '#' || line[0] == '\0')
             continue;
 
-        if (strncmp(line, "STATION", 7) != 0)
+        if (strncmp(line, "STATION;", 8) != 0)
             continue;
 
         char *tok = strtok(line, ";");
@@ -181,7 +181,7 @@ Graph *prepare_graph(char *filename, Dictionnary **dico)
         if (line[0] == '#' || line[0] == '\0')
             continue;
 
-        if (strncmp(line, "EDGE", 4) != 0)
+        if (strncmp(line, "EDGE;", 5) != 0)
             continue;
 
         char *tok = strtok(line, ";");
