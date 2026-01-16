@@ -75,7 +75,7 @@ void insertion_sort(Deg_Sta arr, int n)
         comparaison++;
         arr[j + 1] = key;
     }
-    printf("Statistique pour le tri par insertion\n");
+    printf("Statistique pour le tri par insertion :\n");
     printf("Comparaisons : %d\n", comparaison);
     printf("Swaps : %d\n", swap);
 }
@@ -123,7 +123,7 @@ void quick_sort(Deg_Sta arr, int n)
     swap_q = 0;
     quick_sort_rec(arr, 0, n - 1);
 
-    printf("Statistique pour le tri rapide\n");
+    printf("Statistique pour le tri rapide :\n");
     printf("Comparaisons : %d\n", comp_q);
     printf("Swaps : %d\n", swap_q);
 }
