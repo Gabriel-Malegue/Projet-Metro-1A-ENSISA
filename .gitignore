@@ -1,6 +1,6 @@
 # Ignorer les fichiers exécutables
 .vscode
-bin
+*.bin
 *.exe
 *.o
 *.out
