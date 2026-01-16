@@ -1,4 +1,5 @@
 # Ignorer les fichiers exécutables
+.vscode
 bin
 *.exe
 *.o
