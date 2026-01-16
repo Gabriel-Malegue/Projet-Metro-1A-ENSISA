@@ -24,11 +24,23 @@ Cela rends le fichier moins utilisable mais plus facile a comprendre dans le con
 
 ## STATION
 
-Maitre gabriel a fait un excellent travail et je ne pense pas pouvoir bien tout decrire
+Ce fichier contient toutes les fonctions liées aux fonctionnalités du menu, soit en faisant directement l’action (info station et station voisine) soit en faisant les appelles fonction pour que l’action demandé soit réalisé (Dijkstra et tri). 
 
 ## GRAPH
 
-Maitre gabriel a fait un excellent travail et je ne pense pas pouvoir bien tout decrire
+Notre graphe est défini de la manière suivante : 
+	- un entier V représentant le nombre de station
+    - un tableau permettant de récupérer le nom d’une station à partir de l’ID sous la forme
+ station_name[ID]=nom.
+	- Un tableau de listes chaînées, où chaque case correspond à la liste d’adjacence d’une station.
+
+Cependant cette structure contient un inconvénient, si les ID de station ne sont pas contiguë, alors on perd de la place mémoire car le tableau station_name réservera une place en mémoire pour une station qui n’existe pas car le tableau est créé en fonction de l’ID max. Néanmoins, cette méthode permet d’accéder au nom d’une station en complexité temporel O(1) 
+En ce qui concerne les arêtes du graphe, elles sont représentées par des liste chainé contenant la structure
+AdjListNode contenant :
+	- l’ID du sommet de destination
+	- la durée du trajet
+	- le pointeur vers le nœud suivant
+
 
 ## MENU
 
